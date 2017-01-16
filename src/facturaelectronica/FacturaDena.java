@@ -49,6 +49,7 @@ public class FacturaDena {
     private double importeRecargoEquivalencia; // LT0106
     private double totalFactura; // LT0107
     
+    // Constructor
     public FacturaDena() {
         tipoDocumento = "";
         numeroDocumento = 0;
