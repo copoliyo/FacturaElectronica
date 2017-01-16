@@ -5,6 +5,8 @@
  */
 package facturaelectronica;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 /**
@@ -13,48 +15,46 @@ import java.util.ArrayList;
  */
 public class FacturaDena {
 
-    
-    
     private String tipoDocumento; // DD0101
     private int numeroDocumento;  // DD0102
     private int codigoComprador;      // DD0201
-    private int fechaFactura;       // DD0202
+    private String fechaFactura;       // DD0202
     private String razonSocialComprador; // AQ0101   
     private String direccionComprador; // AQ00003001ABELLA 1, 1 2Âº 3  
     // AQ0000400139770 LAREDO Cantabria 
     private String codigoPostalComprador;
     private String poblacionComprador;
     private String provinciaComprador;
-    
+
     private String telefonoComprador; // DD0301
     private String nifComprador;      // DD0302
     private String nombreComercialVendedor; // DQ0101
-    private String razonSOcialVendedor; // DQ0201
+    private String razonSocialVendedor; // DQ0201
     private String direccionVendedor; // DQ0301
     // DQ0000400139770 LAREDO (Cantabria)
     private String codigoPostalVendedor;
     private String localidadVendedor;
     private String provinciaVendedor;
-    
+
     // DQ00005001Cif: B39366398    Tlfn: 942605082 
     private String nifVendedor;
     private String telefonoVendedor;
-    
+
     private ArrayList<LineaFactura> lineasFactura;
-    
+
     private double baseFactura; // LT0102
     private double porcentajeIva; // LT0103
     private double importeIva; // LT0104
     private double porcentajeRecargoEquivalencia; // LT0105
     private double importeRecargoEquivalencia; // LT0106
     private double totalFactura; // LT0107
-    
+
     // Constructor
     public FacturaDena() {
         tipoDocumento = "";
         numeroDocumento = 0;
         codigoComprador = 0;
-        fechaFactura = 0;
+        fechaFactura = "";
         razonSocialComprador = "";
         direccionComprador = "";
 
@@ -64,7 +64,7 @@ public class FacturaDena {
         telefonoComprador = "";
         nifComprador = "";
         nombreComercialVendedor = "";
-        razonSOcialVendedor = "";
+        razonSocialVendedor = "";
         direccionVendedor = "";
 
         codigoPostalVendedor = "";
@@ -73,7 +73,7 @@ public class FacturaDena {
 
         nifVendedor = "";
         telefonoVendedor = "";
-        
+
         lineasFactura = new ArrayList<LineaFactura>();
 
         baseFactura = 0.0;
@@ -83,18 +83,129 @@ public class FacturaDena {
         importeRecargoEquivalencia = 0.0;
         totalFactura = 0.0;
     }
-    
-    public boolean cargaDesdeFichero(){
-        
+
+    public boolean cargaDesdeFichero() {
+
         boolean cargaCorrecta = true;
-                       
-        
-        
+        String fichero = "C:\\DENAORIGINAL\\FORMST.INI";
+        LineaDena lineaDena = new LineaDena();
+
+        try {
+            FileReader fr = new FileReader(fichero);
+            BufferedReader br = new BufferedReader(fr);
+
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (lineaDena.procesaLinea(linea)) {
+                    switch (lineaDena.getTipo()) {
+                        // DATOS_DOCUMENTO
+                        case 2:
+                            switch (lineaDena.getNivel()) {
+                                case 1:
+                                    switch (lineaDena.getSubnivel()) {
+                                        case 1:
+                                            if (lineaDena.getValor().startsWith("FACTURA")) {
+                                                tipoDocumento = "Factura";
+                                            }
+                                            break;
+                                        case 2:
+                                            numeroDocumento = Integer.valueOf(lineaDena.getValor().substring(0, 8));
+                                            break;
+                                        case 3: // Número de hoja = irrelevante
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                    break;
+                                case 2:
+                                    switch (lineaDena.getSubnivel()) {
+                                        case 1:
+                                            codigoComprador = Integer.valueOf(lineaDena.getValor().substring(0, 11));
+                                            break;
+                                        case 2:
+                                            fechaFactura = lineaDena.getValor().substring(0, 8);
+                                            break;
+                                    }
+                                    break;
+                                default : 
+                                    break;
+                            }
+                            break;
+                        // VARIOS
+                        case 3:
+                            switch (lineaDena.getNivel()) {
+                                case 1:
+                                    switch (lineaDena.getSubnivel()) {
+                                        case 1:
+                                            break;
+                                        case 2:                                          
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                    break;
+                            }
+                            break;
+                        // DATOS_VENDEDOR
+                        case 4:
+                            switch (lineaDena.getNivel()) {
+                                case 1:
+                                    switch (lineaDena.getSubnivel()) {
+                                        case 1: razonSocialVendedor = lineaDena.getValor().trim();
+                                            break;                                        
+                                        default:
+                                            break;
+                                    }
+                                    break;
+                                case 2:
+                                    switch (lineaDena.getSubnivel()) {
+                                        case 1: nombreComercialVendedor = lineaDena.getValor().trim();
+                                            break;                                        
+                                        default:
+                                            break;
+                                    }
+                                    break;
+                                case 3:
+                                    switch (lineaDena.getSubnivel()) {
+                                        case 1: direccionVendedor = lineaDena.getValor().trim();
+                                            break;                                        
+                                        default:
+                                            break;
+                                    }
+                                    break;
+                                case 4:
+                                    switch (lineaDena.getSubnivel()) {
+                                        case 1: codigoPostalVendedor = lineaDena.getValor().substring(0, 5);
+                                                lineaDena.getValor().
+                                            break;                                        
+                                        default:
+                                            break;
+                                    }
+                                    break;    
+                                case 5:
+                                    switch (lineaDena.getSubnivel()) {
+                                        case 1: nombreComercialVendedor = lineaDena.getValor().trim();
+                                            break;                                        
+                                        default:
+                                            break;
+                                    }
+                                    break;    
+                            }
+                            break;    
+                    }
+                }
+            }
+
+            fr.close();
+        } catch (Exception e) {
+            System.out.println("Excepcion leyendo fichero " + fichero + ": " + e);
+            cargaCorrecta = false;
+        }
+
         return cargaCorrecta;
-        
-        
+
     }
-   
+
     public String getTipoDocumento() {
         return tipoDocumento;
     }
@@ -119,11 +230,11 @@ public class FacturaDena {
         this.codigoComprador = codigoComprador;
     }
 
-    public int getFechaFactura() {
+    public String getFechaFactura() {
         return fechaFactura;
     }
 
-    public void setFechaFactura(int fechaFactura) {
+    public void setFechaFactura(String fechaFactura) {
         this.fechaFactura = fechaFactura;
     }
 
@@ -191,12 +302,12 @@ public class FacturaDena {
         this.nombreComercialVendedor = nombreComercialVendedor;
     }
 
-    public String getRazonSOcialVendedor() {
-        return razonSOcialVendedor;
+    public String getRazonSocialVendedor() {
+        return razonSocialVendedor;
     }
 
-    public void setRazonSOcialVendedor(String razonSOcialVendedor) {
-        this.razonSOcialVendedor = razonSOcialVendedor;
+    public void setRazonSocialVendedor(String razonSocialVendedor) {
+        this.razonSocialVendedor = razonSocialVendedor;
     }
 
     public String getDireccionVendedor() {
@@ -302,5 +413,5 @@ public class FacturaDena {
     public void setTotalFactura(double totalFactura) {
         this.totalFactura = totalFactura;
     }
-    
+
 }
