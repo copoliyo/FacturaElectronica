@@ -16,6 +16,10 @@ public class FacturaElectronica {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        FacturaDena fd = new FacturaDena();
+        fd.cargaDesdeFichero();
+        
     }
     
 }

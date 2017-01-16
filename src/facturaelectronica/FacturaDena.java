@@ -84,6 +84,16 @@ public class FacturaDena {
         totalFactura = 0.0;
     }
     
+    public boolean cargaDesdeFichero(){
+        
+        boolean cargaCorrecta = true;
+                       
+        
+        
+        return cargaCorrecta;
+        
+        
+    }
    
     public String getTipoDocumento() {
         return tipoDocumento;
