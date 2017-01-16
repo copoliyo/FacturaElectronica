@@ -176,7 +176,7 @@ public class FacturaDena {
                                 case 4:
                                     switch (lineaDena.getSubnivel()) {
                                         case 1: codigoPostalVendedor = lineaDena.getValor().substring(0, 5);
-                                                lineaDena.getValor().
+                                                //lineaDena.getValor().
                                             break;                                        
                                         default:
                                             break;
