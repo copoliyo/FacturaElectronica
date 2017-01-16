@@ -50,7 +50,6 @@ public class FacturaDena {
     private double totalFactura; // LT0107
     
     // Constructor
-    // Comentario
     public FacturaDena() {
         tipoDocumento = "";
         numeroDocumento = 0;
