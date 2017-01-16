@@ -20,7 +20,7 @@ public class FacturaDena {
     private int codigoComprador;      // DD0201
     private int fechaFactura;       // DD0202
     private String razonSocialComprador; // AQ0101   
-    private String direccionComprador; // AQ00003001ABELLA 1, 1 2บ 3  
+    private String direccionComprador; // AQ00003001ABELLA 1, 1 2ยบ 3  
     // AQ0000400139770 LAREDO Cantabria 
     private String codigoPostalComprador;
     private String poblacionComprador;
@@ -50,6 +50,7 @@ public class FacturaDena {
     private double totalFactura; // LT0107
     
     // Constructor
+    // Comentario
     public FacturaDena() {
         tipoDocumento = "";
         numeroDocumento = 0;
