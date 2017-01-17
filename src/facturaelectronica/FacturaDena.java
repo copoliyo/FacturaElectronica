@@ -15,6 +15,16 @@ import java.util.ArrayList;
  */
 public class FacturaDena {
 
+    private static final String PROVINCIA[] = {"ALAVA", "ALBACETE", "ALICANTE", "ALMERIA", "ASTURIAS", "AVILA", "BADAJOZ",
+        "BALEARES", "BARCELONA", "BURGOS", "CACERES", "CADIZ", "CANTABRIA",
+        "CASTELLON", "CIUDAD REAL", "CORDOBA", "CUENCA", "GERONA", "GRANADA",
+        "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "JAEN", "LA CORUÑA",
+        "LA RIOJA", "LAS PALMAS", "LEON", "LERIDA", "LUGO", "MADRID", "MALAGA",
+        "MURCIA", "NAVARRA", "ORENSE", "PALENCIA", "PONTEVEDRA", "SALAMANCA",
+        "sANTA CRUZ TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA",
+        "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA",
+        "ZARAGOZA", "CEUTA", "MELILLA"};
+
     private String tipoDocumento; // DD0101
     private int numeroDocumento;  // DD0102
     private int codigoComprador;      // DD0201
@@ -59,6 +69,7 @@ public class FacturaDena {
         direccionComprador = "";
 
         codigoPostalComprador = "";
+        poblacionComprador = "";
         provinciaComprador = "";
 
         telefonoComprador = "";
@@ -87,8 +98,9 @@ public class FacturaDena {
     public boolean cargaDesdeFichero() {
 
         boolean cargaCorrecta = true;
-        String fichero = "C:\\DENAORIGINAL\\FORMST.INI";
+        String fichero = "C:\\DENAORIGINAL\\FORMST.TXT";
         LineaDena lineaDena = new LineaDena();
+        int contadorPaginas = 0;
 
         try {
             FileReader fr = new FileReader(fichero);
@@ -97,102 +109,201 @@ public class FacturaDena {
             String linea;
             while ((linea = br.readLine()) != null) {
                 if (lineaDena.procesaLinea(linea)) {
-                    switch (lineaDena.getTipo()) {
-                        // DATOS_DOCUMENTO
-                        case 2:
-                            switch (lineaDena.getNivel()) {
-                                case 1:
-                                    switch (lineaDena.getSubnivel()) {
-                                        case 1:
-                                            if (lineaDena.getValor().startsWith("FACTURA")) {
-                                                tipoDocumento = "Factura";
-                                            }
-                                            break;
-                                        case 2:
-                                            numeroDocumento = Integer.valueOf(lineaDena.getValor().substring(0, 8));
-                                            break;
-                                        case 3: // Número de hoja = irrelevante
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                    break;
-                                case 2:
-                                    switch (lineaDena.getSubnivel()) {
-                                        case 1:
-                                            codigoComprador = Integer.valueOf(lineaDena.getValor().substring(0, 11));
-                                            break;
-                                        case 2:
-                                            fechaFactura = lineaDena.getValor().substring(0, 8);
-                                            break;
-                                    }
-                                    break;
-                                default : 
-                                    break;
-                            }
-                            break;
-                        // VARIOS
-                        case 3:
-                            switch (lineaDena.getNivel()) {
-                                case 1:
-                                    switch (lineaDena.getSubnivel()) {
-                                        case 1:
-                                            break;
-                                        case 2:                                          
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                    break;
-                            }
-                            break;
-                        // DATOS_VENDEDOR
-                        case 4:
-                            switch (lineaDena.getNivel()) {
-                                case 1:
-                                    switch (lineaDena.getSubnivel()) {
-                                        case 1: razonSocialVendedor = lineaDena.getValor().trim();
-                                            break;                                        
-                                        default:
-                                            break;
-                                    }
-                                    break;
-                                case 2:
-                                    switch (lineaDena.getSubnivel()) {
-                                        case 1: nombreComercialVendedor = lineaDena.getValor().trim();
-                                            break;                                        
-                                        default:
-                                            break;
-                                    }
-                                    break;
-                                case 3:
-                                    switch (lineaDena.getSubnivel()) {
-                                        case 1: direccionVendedor = lineaDena.getValor().trim();
-                                            break;                                        
-                                        default:
-                                            break;
-                                    }
-                                    break;
-                                case 4:
-                                    switch (lineaDena.getSubnivel()) {
-                                        case 1: codigoPostalVendedor = lineaDena.getValor().substring(0, 5);
-                                                //lineaDena.getValor().
-                                            break;                                        
-                                        default:
-                                            break;
-                                    }
-                                    break;    
-                                case 5:
-                                    switch (lineaDena.getSubnivel()) {
-                                        case 1: nombreComercialVendedor = lineaDena.getValor().trim();
-                                            break;                                        
-                                        default:
-                                            break;
-                                    }
-                                    break;    
-                            }
-                            break;    
+                    // Si es IN = comienzo de página
+                    if (lineaDena.getTipo() == 1) {
+                        contadorPaginas++;
                     }
+                    
+                    // Si estamos en la segunda página, ya tenemos todos los datos de la cabecera, no tenemos que pasar por aquí.
+                    if (contadorPaginas <= 1) {
+                        switch (lineaDena.getTipo()) {
+                            // DATOS_DOCUMENTO
+                            case 2:
+                                switch (lineaDena.getNivel()) {
+                                    case 1:
+                                        switch (lineaDena.getSubnivel()) {
+                                            case 1:
+                                                if (lineaDena.getValor().startsWith("FACTURA")) {
+                                                    tipoDocumento = "Factura";
+                                                }
+                                                break;
+                                            case 2:
+                                                // Sacamos el número de documento sin espacios
+                                                String strAux = lineaDena.getValor().trim();
+                                                String strNumeroDocumento = "";
+                                                for (int i = 0; i < strAux.length(); i++) {
+                                                    if (strAux.charAt(i) != '.') {
+                                                        strNumeroDocumento += strAux.charAt(i);
+                                                    }
+                                                }
+                                                numeroDocumento = Integer.valueOf(strNumeroDocumento);
+                                                break;
+                                            case 3: // Número de hoja = irrelevante
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                        break;
+                                    case 2:
+                                        switch (lineaDena.getSubnivel()) {
+                                            case 1:
+                                                codigoComprador = Integer.valueOf(lineaDena.getValor().substring(0, 11).trim());
+                                                break;
+                                            case 2:
+                                                fechaFactura = lineaDena.getValor().substring(0, 8);
+                                                break;
+                                            case 3:
+                                                telefonoComprador = lineaDena.getValor().trim();
+                                                break;
+                                            case 4:
+                                                nifComprador = lineaDena.getValor().trim();
+                                                break;
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            // VARIOS
+                            case 3:
+                                switch (lineaDena.getNivel()) {
+                                    case 1:
+                                        switch (lineaDena.getSubnivel()) {
+                                            case 1:
+                                                break;
+                                            case 2:
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                        break;
+                                }
+                                break;
+                            // DATOS_VENDEDOR
+                            case 4:
+                                switch (lineaDena.getNivel()) {
+                                    case 1:
+                                        switch (lineaDena.getSubnivel()) {
+                                            case 1:
+                                                razonSocialVendedor = lineaDena.getValor().trim();
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                        break;
+                                    case 2:
+                                        switch (lineaDena.getSubnivel()) {
+                                            case 1:
+                                                nombreComercialVendedor = lineaDena.getValor().trim();
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                        break;
+                                    case 3:
+                                        switch (lineaDena.getSubnivel()) {
+                                            case 1:
+                                                direccionVendedor = lineaDena.getValor().trim();
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                        break;
+                                    case 4:
+                                        switch (lineaDena.getSubnivel()) {
+                                            case 1:
+                                                codigoPostalVendedor = lineaDena.getValor().substring(0, 5);
+
+                                                // Obtenemos la línea sin el código postal
+                                                String lineaStr = lineaDena.getValor().substring(5).trim();
+                                                boolean esEspacio = false;
+                                                int i = lineaStr.length() - 1;
+                                                int separador = 0;
+                                                char ch = lineaStr.charAt(i);
+                                                // Vamos buscado los espacios hacia atrás. Cuando encontramos un,
+                                                // Comprobamos si el caracter anterior está en Mayusculas, si es
+                                                // Así, estamos en la 'parte de atrás' de la localidad.
+                                                while (i > 0 && separador == 0) {
+                                                    while (i > 0 && !Character.isSpaceChar(ch)) {
+                                                        i--;
+                                                        ch = lineaStr.charAt(i);
+                                                    }
+                                                    if (i > 0 && Character.isUpperCase(lineaStr.charAt(i - 1))) {
+                                                        separador = i;
+                                                    }
+                                                }
+
+                                                if (separador > 0) {
+                                                    localidadVendedor = lineaStr.substring(0, separador).trim();
+                                                    provinciaVendedor = lineaStr.substring(i).trim();
+                                                }
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                        break;
+                                    case 5:
+                                        switch (lineaDena.getSubnivel()) {
+                                            case 1:
+                                                int posNifVendedor = lineaDena.getValor().indexOf("Nif:");
+                                                nifVendedor = lineaDena.getValor().substring(posNifVendedor + 4, posNifVendedor + 4 + 11).trim();
+
+                                                int posTlfnVendedor = lineaDena.getValor().indexOf("Tlfn:");
+                                                telefonoVendedor = lineaDena.getValor().substring(posTlfnVendedor + 4).trim();
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                        break;
+                                }
+                                break;
+                            // AQ A Quien
+                            case 7:
+                                switch (lineaDena.getNivel()) {
+                                    case 1:
+                                        razonSocialComprador = lineaDena.getValor().trim();
+                                        break;
+                                    case 2:
+
+                                        break;
+                                    case 3:
+                                        direccionComprador = lineaDena.getValor().trim();
+                                        break;
+                                    case 4:
+                                        codigoPostalComprador = lineaDena.getValor().substring(0, 5);
+
+                                        // Obtenemos la línea sin el código postal
+                                        String lineaStr = lineaDena.getValor().substring(5).trim();
+                                        boolean esEspacio = false;
+                                        int i = lineaStr.length() - 1;
+                                        int separador = 0;
+                                        char ch = lineaStr.charAt(i);
+                                        // Vamos buscado los espacios hacia atrás. Cuando encontramos un,
+                                        // Comprobamos si el caracter anterior está en Mayusculas, si es
+                                        // Así, estamos en la 'parte de atrás' de la localidad.
+                                        while (i > 0 && separador == 0) {
+                                            while (i > 0 && !Character.isSpaceChar(ch)) {
+                                                i--;
+                                                ch = lineaStr.charAt(i);
+                                            }
+                                            if (i > 0 && Character.isUpperCase(lineaStr.charAt(i - 1))) {
+                                                separador = i;
+                                            }
+                                        }
+
+                                        if (separador > 0) {
+                                            poblacionComprador = lineaStr.substring(0, separador).trim();
+                                            provinciaComprador = lineaStr.substring(i).trim();
+                                        }
+                                        break;
+                                }
+                                break;
+                        }
+                    }
+                    
+                    // De todas formas, tenemos que ver si tenemos una LI, LT ó DR.
+                    // Esto es: una Linea de Artículo, una Linea Total o los datos del Rgitro Mercantil.
+                    // La Linea Total y la del Registro mercantil, sólo vienen una vez al final, no se repiten en cada página.
                 }
             }
 
