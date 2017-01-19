@@ -304,6 +304,73 @@ public class FacturaDena {
                     // De todas formas, tenemos que ver si tenemos una LI, LT ó DR.
                     // Esto es: una Linea de Artículo, una Linea Total o los datos del Rgitro Mercantil.
                     // La Linea Total y la del Registro mercantil, sólo vienen una vez al final, no se repiten en cada página.
+                    switch(lineaDena.getTipo()){                        
+                        // Si tenemos una LI, en la primera linea, siempre viene el código
+                        case 8: 
+                            LineaFactura lineaFactura = new LineaFactura();
+                            lineaFactura.setCodigoArticulo(lineaDena.getValor().trim());
+                            // Ahora tenemos que leer el resto de partes de la línea, que siempre vienen seguidas.
+                            for(int i = 0; i < 5; i++){
+                                if((linea = br.readLine()) != null){
+                                    lineaDena.procesaLinea(linea);
+                                    if (lineaDena.getValor().trim().length() > 0) {
+                                        switch (lineaDena.getSubnivel()) {
+                                            case 2:
+                                                lineaFactura.setDescripcionArticulo(lineaDena.getValor().trim());
+                                                break;
+                                            case 3:
+                                                lineaFactura.setCantidad(Integer.valueOf(lineaDena.getValor().trim()));
+                                                break;
+                                            case 4:
+                                                lineaFactura.setPrecio(numeroDenaToDouble(lineaDena.getValor().trim()));
+                                                break;
+                                            case 5:
+                                                lineaFactura.setDescuento(Double.valueOf(lineaDena.getValor().trim()));
+                                                break;
+                                            case 6:
+                                                lineaFactura.setImporte(numeroDenaToDouble(lineaDena.getValor().trim()));
+                                                break;
+                                        }
+                                    }
+                                }
+                            }
+                            if(lineaFactura.getImporte() != 0.0)
+                                lineasFactura.add(lineaFactura);
+                            break;
+                        // Linea total                        
+                        case 9:
+                            switch (lineaDena.getSubnivel()) {
+                                case 1:
+                                    break;
+                                case 2: // Base IVA
+                                    if (lineaDena.getValor().trim().length() > 0) {
+                                        baseFactura = numeroDenaToDouble(lineaDena.getValor().trim());
+                                    }
+                                    break;
+                                case 3: // Porcentaje IVA '21%'
+                                    if (lineaDena.getValor().trim().length() > 0) {
+                                        String strAux = lineaDena.getValor();
+                                        strAux = strAux.replaceAll("%", " ").trim();
+                                        porcentajeIva = Double.valueOf(strAux);
+                                    }
+                                    break;
+                                case 4: // Importe IVA '3.242,98 *'
+                                    if (lineaDena.getValor().trim().length() > 0) {
+                                        importeIva = numeroDenaToDouble(lineaDena.getValor().trim());
+                                    }
+                                    break;
+                                case 5: // Porcentaje recargo equivalencia
+                                    break;
+                                case 6: // Importe recargo equivalencia
+                                    break;
+                                case 7: // Total factura
+                                    if (lineaDena.getValor().trim().length() > 0) {
+                                        totalFactura = numeroDenaToDouble(lineaDena.getValor().trim());
+                                    }
+                                    break;
+                        }                         
+                            break;
+                    }
                 }
             }
 
@@ -317,6 +384,29 @@ public class FacturaDena {
 
     }
 
+    private double numeroDenaToDouble(String numeroDenaStr) {
+
+        // Convierte una cadena con un número formateado p.e.: '3.424,98 *' a un Double
+        double resultado = 0.0;
+
+        numeroDenaStr = numeroDenaStr.replaceAll("*", " "); // '3.424.98 '        
+        numeroDenaStr = numeroDenaStr.trim();               // '3.424,98'
+                
+        String strResultado = "";
+        for (int i = 0; i < numeroDenaStr.length(); i++) {
+            if (numeroDenaStr.charAt(i) != '.') {
+                strResultado += numeroDenaStr.charAt(i);
+            }
+        }                                                   // '3424,98'
+        
+        strResultado = strResultado.replaceAll(",", ".");   // '3424.98'
+        
+        resultado = Double.valueOf(strResultado);
+        
+
+        return resultado;
+    }
+    
     public String getTipoDocumento() {
         return tipoDocumento;
     }
