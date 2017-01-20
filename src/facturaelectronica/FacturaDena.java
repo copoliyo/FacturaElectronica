@@ -15,15 +15,6 @@ import java.util.ArrayList;
  */
 public class FacturaDena {
 
-    private static final String PROVINCIA[] = {"ALAVA", "ALBACETE", "ALICANTE", "ALMERIA", "ASTURIAS", "AVILA", "BADAJOZ",
-        "BALEARES", "BARCELONA", "BURGOS", "CACERES", "CADIZ", "CANTABRIA",
-        "CASTELLON", "CIUDAD REAL", "CORDOBA", "CUENCA", "GERONA", "GRANADA",
-        "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "JAEN", "LA CORUÑA",
-        "LA RIOJA", "LAS PALMAS", "LEON", "LERIDA", "LUGO", "MADRID", "MALAGA",
-        "MURCIA", "NAVARRA", "ORENSE", "PALENCIA", "PONTEVEDRA", "SALAMANCA",
-        "sANTA CRUZ TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA",
-        "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA",
-        "ZARAGOZA", "CEUTA", "MELILLA"};
 
     private String tipoDocumento; // DD0101
     private int numeroDocumento;  // DD0102
@@ -49,6 +40,7 @@ public class FacturaDena {
     // DQ00005001Cif: B39366398    Tlfn: 942605082 
     private String nifVendedor;
     private String telefonoVendedor;
+    private String registroMercantil;
 
     private ArrayList<LineaFactura> lineasFactura;
 
@@ -84,6 +76,7 @@ public class FacturaDena {
 
         nifVendedor = "";
         telefonoVendedor = "";
+        registroMercantil = "";
 
         lineasFactura = new ArrayList<LineaFactura>();
 
@@ -151,13 +144,16 @@ public class FacturaDena {
                                                 break;
                                             case 2:
                                                 fechaFactura = lineaDena.getValor().substring(0, 8);
-                                                break;
-                                            case 3:
+                                                break;                                            
+                                        }
+                                        break;
+                                    case 3: switch (lineaDena.getSubnivel()) {
+                                            case 1:
                                                 telefonoComprador = lineaDena.getValor().trim();
                                                 break;
-                                            case 4:
+                                            case 2:
                                                 nifComprador = lineaDena.getValor().trim();
-                                                break;
+                                                break;                                            
                                         }
                                         break;
                                     default:
@@ -249,7 +245,7 @@ public class FacturaDena {
                                                 nifVendedor = lineaDena.getValor().substring(posNifVendedor + 4, posNifVendedor + 4 + 11).trim();
 
                                                 int posTlfnVendedor = lineaDena.getValor().indexOf("Tlfn:");
-                                                telefonoVendedor = lineaDena.getValor().substring(posTlfnVendedor + 4).trim();
+                                                telefonoVendedor = lineaDena.getValor().substring(posTlfnVendedor + 5).trim();
                                                 break;
                                             default:
                                                 break;
@@ -322,6 +318,7 @@ public class FacturaDena {
                                                 lineaFactura.setCantidad(Integer.valueOf(lineaDena.getValor().trim()));
                                                 break;
                                             case 4:
+                                                numeroDenaToDouble(lineaDena.getValor().trim());
                                                 lineaFactura.setPrecio(numeroDenaToDouble(lineaDena.getValor().trim()));
                                                 break;
                                             case 5:
@@ -370,13 +367,17 @@ public class FacturaDena {
                                     break;
                         }                         
                             break;
+                        // Linea registro mercantil                         
+                        case 10:
+                                registroMercantil = lineaDena.getValor().trim();
+                            break;
                     }
                 }
             }
 
             fr.close();
-        } catch (Exception e) {
-            System.out.println("Excepcion leyendo fichero " + fichero + ": " + e);
+        } catch (Exception e) {            
+            System.out.println(e.getMessage());
             cargaCorrecta = false;
         }
 
@@ -389,7 +390,8 @@ public class FacturaDena {
         // Convierte una cadena con un número formateado p.e.: '3.424,98 *' a un Double
         double resultado = 0.0;
 
-        numeroDenaStr = numeroDenaStr.replaceAll("*", " "); // '3.424.98 '        
+        if(numeroDenaStr.contains("*"))
+            numeroDenaStr = numeroDenaStr.replaceAll("\\*", " "); // '3.424.98 '        
         numeroDenaStr = numeroDenaStr.trim();               // '3.424,98'
                 
         String strResultado = "";
@@ -557,6 +559,14 @@ public class FacturaDena {
 
     public void setTelefonoVendedor(String telefonoVendedor) {
         this.telefonoVendedor = telefonoVendedor;
+    }
+    
+    public String getRegistroMercantil() {
+        return registroMercantil;
+    }
+
+    public void setRegistroMercantil(String registroMercantil) {
+        this.registroMercantil = registroMercantil;
     }
 
     public ArrayList<LineaFactura> getLineasFactura() {
