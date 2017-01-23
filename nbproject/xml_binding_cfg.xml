@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<schemas xmlns='http://xml.netbeans.org/schema/JAXBWizConfig' destdir='build/generated-sources/jaxb' projectName='FacturaElectronica' version='1.0'>
+	<schema type='-xmlschema' package='' name='facturaElectronicaJAXB'>
+		<xjc-options>
+			<xjc-option name='-npa' value='true'/>
+		</xjc-options>
+		<schema-sources>
+			<schema-source location='xml-resources/jaxb/facturaElectronicaJAXB/facturaElectronicaXmlSchema.xsd' origLocation='src/facturaelectronica/facturaElectronicaXmlSchema.xsd'/>
+		</schema-sources>
+		<bindings>
+		</bindings>
+		<catalog/>
+	</schema>
+</schemas>

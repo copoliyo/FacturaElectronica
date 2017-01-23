@@ -71,6 +71,9 @@ public class LineaDena {
                 case "LT":
                     this.tipo = TipoDeLinea.LINEA_TOTAL.getTipoLineaInt();
                     break;
+                case "DR":
+                    this.tipo = TipoDeLinea.REGISTRO_MERCANTIL.getTipoLineaInt();
+                    break;    
                 default:
                     this.tipo = 0;
                     System.out.println("Tipoo de linea no reconocido");

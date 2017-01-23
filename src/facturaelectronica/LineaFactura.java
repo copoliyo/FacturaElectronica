@@ -25,7 +25,7 @@ public class LineaFactura {
         precio = 0.0;
         descuento = 0.0;
         importe = 0.0;
-    }
+    }        
 
     public String getCodigoArticulo() {
         return codigoArticulo;
