@@ -9,12 +9,15 @@
             <InvoicesCount>1</InvoicesCount>
             <TotalInvoicesAmount>
                 <TotalAmount>193.5</TotalAmount>
+                <EquivalentInEuros>193.5</EquivalentInEuros>
             </TotalInvoicesAmount>
             <TotalOutstandingAmount>
                 <TotalAmount>193.5</TotalAmount>
+                <EquivalentInEuros>193.5</EquivalentInEuros>
             </TotalOutstandingAmount>
             <TotalExecutableAmount>
                 <TotalAmount>193.5</TotalAmount>
+                <EquivalentInEuros>193.5</EquivalentInEuros>
             </TotalExecutableAmount>
             <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
         </Batch>
@@ -36,7 +39,7 @@
                     <Folio>F.1</Folio>
                     <Section>S.8</Section>
                     <Volume>T.7428</Volume>
-                    <AdditionalRegistrationData>Inscripcion I.27</AdditionalRegistrationData>
+                    <AdditionalRegistrationData>Inscripcion T.7428 F.1 H.M-120178 L.0 I.27</AdditionalRegistrationData>
                 </RegistrationData>
                 <AddressInSpain>
                     <Address>Eguilior 6</Address>

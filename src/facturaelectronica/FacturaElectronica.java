@@ -8,6 +8,8 @@ package facturaelectronica;
 import es.facturae.facturae._2014.v3_2_1.facturae.*;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -53,18 +55,19 @@ public class FacturaElectronica {
         batchType.setBatchIdentifier(String.valueOf(facturaDena.getNumeroDocumento()));
         batchType.setInvoicesCount(1L);
 
-        AmountType totalInvoicesAmount = new AmountType();
+        AmountType totalInvoicesAmount = new AmountType();        
         totalInvoicesAmount.setTotalAmount(facturaDena.getTotalFactura());
-        totalInvoicesAmount.setEquivalentInEuros(facturaDena.getTotalFactura());        
-        //AmountType totalAmount = new AmountType();
-        //totalAmount.setTotalAmount(facturaDena.getTotalFactura());
+        // Poner la cantidad en EUROS provoca un error de formato, exige siempre dos
+        // decimales, aunque sean .00
+        //totalInvoicesAmount.setEquivalentInEuros(facturaDena.getTotalFactura());        
+        
         AmountType totalOutstandingAmount = new AmountType();
         totalOutstandingAmount.setTotalAmount(facturaDena.getTotalFactura());
-        totalOutstandingAmount.setEquivalentInEuros(facturaDena.getTotalFactura());
+        //totalOutstandingAmount.setEquivalentInEuros(facturaDena.getTotalFactura());
         
         AmountType totalExecutableAmount = new AmountType();
         totalExecutableAmount.setTotalAmount(facturaDena.getTotalFactura());
-        totalExecutableAmount.setEquivalentInEuros(facturaDena.getTotalFactura());
+        //totalExecutableAmount.setEquivalentInEuros(facturaDena.getTotalFactura());
         
         
         batchType.setTotalInvoicesAmount(totalInvoicesAmount);
@@ -95,9 +98,16 @@ public class FacturaElectronica {
         sellerLegalEntity.setCorporateName(facturaDena.getRazonSocialVendedor());
         if(facturaDena.getNombreComercialVendedor().trim().length() > 0)
             sellerLegalEntity.setTradeName(facturaDena.getNombreComercialVendedor());
-        if(facturaDena.getRegistroMercantil().trim().length() > 0){
+        if(facturaDena.getRmRegistroMercantil().length() > 0){
             RegistrationDataType sellerRegistroMercantil = new RegistrationDataType();
-            sellerRegistroMercantil.setAdditionalRegistrationData(facturaDena.getRegistroMercantil());
+            sellerRegistroMercantil.setRegisterOfCompaniesLocation(facturaDena.getRmRegistroMercantil());
+            sellerRegistroMercantil.setBook(facturaDena.getRmLibro());
+            sellerRegistroMercantil.setSheet(facturaDena.getRmHoja());
+            sellerRegistroMercantil.setFolio(facturaDena.getRmFolio());
+            sellerRegistroMercantil.setSection(facturaDena.getRmSeccion());
+            sellerRegistroMercantil.setVolume(facturaDena.getRmTomo());
+            sellerRegistroMercantil.setAdditionalRegistrationData("Inscripcion " + facturaDena.getRmInscripcion());
+            
             sellerLegalEntity.setRegistrationData(sellerRegistroMercantil);
         }
         
@@ -168,6 +178,20 @@ public class FacturaElectronica {
         jaxbMarshaller.marshal(facturae, f);
         jaxbMarshaller.marshal(facturae, System.out);
 
+    }
+    
+    public static double formatoConComaDecimal(double doubleSinFormato) {
+
+        String strDoubleFormateado = "";
+        double doubleFormateado = 0.0;
+
+        DecimalFormatSymbols simbolos = new DecimalFormatSymbols();
+        simbolos.setDecimalSeparator('.');
+        DecimalFormat myFormatter = new DecimalFormat("########0.00", simbolos);
+        strDoubleFormateado = myFormatter.format(doubleSinFormato);
+        
+        doubleFormateado = Double.valueOf(strDoubleFormateado);
+        return doubleFormateado;
     }
         
     

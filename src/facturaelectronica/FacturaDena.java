@@ -40,7 +40,13 @@ public class FacturaDena {
     // DQ00005001Cif: B39366398    Tlfn: 942605082 
     private String nifVendedor;
     private String telefonoVendedor;
-    private String registroMercantil;
+    private String rmRegistroMercantil;
+    private String rmSeccion;
+    private String rmTomo;
+    private String rmFolio;
+    private String rmHoja;
+    private String rmLibro;
+    private String rmInscripcion;   
 
     private ArrayList<LineaFactura> lineasFactura;
 
@@ -76,7 +82,13 @@ public class FacturaDena {
 
         nifVendedor = "";
         telefonoVendedor = "";
-        registroMercantil = "";
+        rmRegistroMercantil = "";
+        rmSeccion = "";
+        rmTomo = "";
+        rmFolio = "";
+        rmHoja = "";
+        rmLibro = "";
+        rmInscripcion = "";
 
         lineasFactura = new ArrayList<LineaFactura>();
 
@@ -367,9 +379,59 @@ public class FacturaDena {
                                     break;
                         }                         
                             break;
-                        // Linea registro mercantil                         
+                        // Linea registro mercantil     
+                        // Siempre con el mismo formato
+                        // R.M.Madrid S.8 T.7428 F.1 H.M-120178 L.0 I.27
                         case 10:
-                                registroMercantil = lineaDena.getValor().trim();
+                                int pRegistroMercantil = 0;
+                                int pSeccion = 0;
+                                int pTomo = 0;
+                                int pFolio = 0;
+                                int pHoja = 0;
+                                int pLibro = 0;
+                                int pInscripcion = 0;
+                                pRegistroMercantil = lineaDena.getValor().trim().indexOf("R.M.");
+                                pSeccion = lineaDena.getValor().trim().indexOf("S.");
+                                pTomo = lineaDena.getValor().trim().indexOf("T.");
+                                pFolio = lineaDena.getValor().trim().indexOf("F.");
+                                pHoja = lineaDena.getValor().trim().indexOf("H.");
+                                pLibro = lineaDena.getValor().trim().indexOf("L.");
+                                pInscripcion = lineaDena.getValor().trim().indexOf("I.");
+                                
+                                if(pRegistroMercantil != -1 && pSeccion != -1)
+                                    rmRegistroMercantil = lineaDena.getValor().trim().substring(pRegistroMercantil, pSeccion).trim();
+                                else
+                                    rmRegistroMercantil = "No disponible";
+                                
+                                if(pSeccion != -1 && pTomo != -1)
+                                    rmSeccion = lineaDena.getValor().trim().substring(pSeccion, pTomo).trim();
+                                else
+                                    rmSeccion = "No disponible";
+                                
+                                if(pTomo != -1 && pFolio != -1)
+                                    rmTomo = lineaDena.getValor().trim().substring(pTomo, pFolio).trim();
+                                else
+                                    rmTomo = "No disponible";
+                                
+                                if(pFolio != -1 && pHoja != -1)
+                                    rmFolio = lineaDena.getValor().trim().substring(pFolio, pHoja).trim();
+                                else
+                                    rmFolio = "No disponible";
+                                
+                                if(pHoja != -1 && pLibro != -1)
+                                    rmHoja = lineaDena.getValor().trim().substring(pHoja, pLibro).trim();
+                                else
+                                    rmHoja = "No disponible";
+                                
+                                if(pLibro != -1 && pInscripcion != -1)
+                                    rmLibro = lineaDena.getValor().trim().substring(pLibro, pInscripcion).trim();
+                                else
+                                    rmLibro = "No disponible";
+                                
+                                if(pInscripcion != -1)
+                                    rmInscripcion = lineaDena.getValor().trim().substring(pInscripcion).trim();
+                                else
+                                    rmInscripcion = "No disponible";
                             break;
                     }
                 }
@@ -560,13 +622,60 @@ public class FacturaDena {
     public void setTelefonoVendedor(String telefonoVendedor) {
         this.telefonoVendedor = telefonoVendedor;
     }
-    
-    public String getRegistroMercantil() {
-        return registroMercantil;
+public String getRmRegistroMercantil() {
+        return rmRegistroMercantil;
     }
 
-    public void setRegistroMercantil(String registroMercantil) {
-        this.registroMercantil = registroMercantil;
+    public void setRmRegistroMercantil(String rmRegistroMercantil) {
+        this.rmRegistroMercantil = rmRegistroMercantil;
+    }
+
+    public String getRmSeccion() {
+        return rmSeccion;
+    }
+
+    public void setRmSeccion(String rmSeccion) {
+        this.rmSeccion = rmSeccion;
+    }
+
+    public String getRmTomo() {
+        return rmTomo;
+    }
+
+    public void setRmTomo(String rmTomo) {
+        this.rmTomo = rmTomo;
+    }
+
+    public String getRmFolio() {
+        return rmFolio;
+    }
+
+    public void setRmFolio(String rmFolio) {
+        this.rmFolio = rmFolio;
+    }
+
+    public String getRmHoja() {
+        return rmHoja;
+    }
+
+    public void setRmHoja(String rmHoja) {
+        this.rmHoja = rmHoja;
+    }
+
+    public String getRmLibro() {
+        return rmLibro;
+    }
+
+    public void setRmLibro(String rmLibro) {
+        this.rmLibro = rmLibro;
+    }
+
+    public String getRmInscripcion() {
+        return rmInscripcion;
+    }
+
+    public void setRmInscripcion(String rmInscripcion) {
+        this.rmInscripcion = rmInscripcion;
     }
 
     public ArrayList<LineaFactura> getLineasFactura() {
