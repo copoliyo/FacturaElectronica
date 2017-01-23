@@ -18,7 +18,9 @@ public enum TipoDeLinea {
     VARIOS_AUX2("V2", 6),
     DATOS_COMPRADOR("AQ", 7),
     LINEA_VENTA("LI", 8),
-    LINEA_TOTAL("LT", 9);
+    LINEA_TOTAL("LT", 9),
+    REGISTRO_MERCANTIL("DR", 10);
+    
     
     private final String tipoLineaStr;
     private final int tipoLineaInt;
