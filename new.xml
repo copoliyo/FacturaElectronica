@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:Facturae xmlns:ns2="http://www.w3.org/2000/09/xmldsig#" xmlns:ns3="http://www.facturae.es/Facturae/2014/v3.2.1/Facturae">
+    <FileHeader>
+        <SchemaVersion>3.2.1</SchemaVersion>
+        <Modality>I</Modality>
+        <InvoiceIssuerType>EM</InvoiceIssuerType>
+        <Batch>
+            <BatchIdentifier>467</BatchIdentifier>
+            <InvoicesCount>1</InvoicesCount>
+            <TotalInvoicesAmount>
+                <TotalAmount>193.5</TotalAmount>
+                <EquivalentInEuros>193.5</EquivalentInEuros>
+            </TotalInvoicesAmount>
+            <TotalOutstandingAmount>
+                <TotalAmount>193.5</TotalAmount>
+                <EquivalentInEuros>193.5</EquivalentInEuros>
+            </TotalOutstandingAmount>
+            <TotalExecutableAmount>
+                <TotalAmount>193.5</TotalAmount>
+                <EquivalentInEuros>193.5</EquivalentInEuros>
+            </TotalExecutableAmount>
+            <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
+        </Batch>
+    </FileHeader>
+    <Parties>
+        <SellerParty>
+            <TaxIdentification>
+                <PersonTypeCode>F</PersonTypeCode>
+                <ResidenceTypeCode>R</ResidenceTypeCode>
+                <TaxIdentificationNumber>: B39366398</TaxIdentificationNumber>
+            </TaxIdentification>
+            <LegalEntity>
+                <CorporateName>LAREDO COMERCIAL</CorporateName>
+                <TradeName>ALMACENES LAREDO, S.L.</TradeName>
+                <AddressInSpain>
+                    <Address>Eguilior 6</Address>
+                    <PostCode>39770</PostCode>
+                    <Town>LAREDO</Town>
+                    <Province>(Cantabria)</Province>
+                    <CountryCode>ESP</CountryCode>
+                </AddressInSpain>
+            </LegalEntity>
+        </SellerParty>
+        <BuyerParty>
+            <TaxIdentification>
+                <PersonTypeCode>J</PersonTypeCode>
+                <ResidenceTypeCode>R</ResidenceTypeCode>
+                <TaxIdentificationNumber>P3903500A</TaxIdentificationNumber>
+            </TaxIdentification>
+            <LegalEntity>
+                <CorporateName>AYUNTAMIENTO DE LAREDO</CorporateName>
+                <AddressInSpain>
+                    <Address>ABELLA 1, 1 2º 3</Address>
+                    <PostCode>39770</PostCode>
+                    <Town>LAREDO</Town>
+                    <Province>Cantabria</Province>
+                    <CountryCode>ESP</CountryCode>
+                </AddressInSpain>
+            </LegalEntity>
+        </BuyerParty>
+    </Parties>
+</ns3:Facturae>
