@@ -8,6 +8,14 @@ package facturaelectronica;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  *
@@ -19,7 +27,7 @@ public class FacturaDena {
     private String tipoDocumento; // DD0101
     private int numeroDocumento;  // DD0102
     private int codigoComprador;      // DD0201
-    private String fechaFactura;       // DD0202
+    private XMLGregorianCalendar fechaFactura;       // DD0202
     private String razonSocialComprador; // AQ0101   
     private String direccionComprador; // AQ00003001ABELLA 1, 1 2º 3  
     // AQ0000400139770 LAREDO Cantabria 
@@ -50,11 +58,13 @@ public class FacturaDena {
 
     private ArrayList<LineaFactura> lineasFactura;
 
+    
     private double baseFactura; // LT0102
     private double porcentajeIva; // LT0103
     private double importeIva; // LT0104
     private double porcentajeRecargoEquivalencia; // LT0105
     private double importeRecargoEquivalencia; // LT0106
+    private double descuentoTotal; // Calculado sumando cada linea   
     private double totalFactura; // LT0107
 
     // Constructor
@@ -62,7 +72,7 @@ public class FacturaDena {
         tipoDocumento = "";
         numeroDocumento = 0;
         codigoComprador = 0;
-        fechaFactura = "";
+        /*fechaFactura = "";*/
         razonSocialComprador = "";
         direccionComprador = "";
 
@@ -97,6 +107,7 @@ public class FacturaDena {
         importeIva = 0.0;
         porcentajeRecargoEquivalencia = 0.0;
         importeRecargoEquivalencia = 0.0;
+        descuentoTotal = 0.0;
         totalFactura = 0.0;
     }
 
@@ -155,7 +166,7 @@ public class FacturaDena {
                                                 codigoComprador = Integer.valueOf(lineaDena.getValor().substring(0, 11).trim());
                                                 break;
                                             case 2:
-                                                fechaFactura = lineaDena.getValor().substring(0, 8);
+                                                fechaFactura = fechaDenaToXmlGregorianCalendar(lineaDena.getValor().substring(0, 8));
                                                 break;                                            
                                         }
                                         break;
@@ -335,6 +346,7 @@ public class FacturaDena {
                                                 break;
                                             case 5:
                                                 lineaFactura.setDescuento(Double.valueOf(lineaDena.getValor().trim()));
+                                                descuentoTotal += lineaFactura.getDescuento();
                                                 break;
                                             case 6:
                                                 lineaFactura.setImporte(numeroDenaToDouble(lineaDena.getValor().trim()));
@@ -471,6 +483,31 @@ public class FacturaDena {
         return resultado;
     }
     
+    private XMLGregorianCalendar fechaDenaToXmlGregorianCalendar(String strFechaDena) throws DatatypeConfigurationException{
+        
+        String strDia = "00";
+        String strMes = "00";
+        String strAnio = "00";
+        GregorianCalendar fecha = new GregorianCalendar();
+        
+        if(strFechaDena.length() == 8){
+            strDia = strFechaDena.substring(0, 2);
+            strMes = strFechaDena.substring(3, 5);
+            strAnio = strFechaDena.substring(6, 8);
+        }
+        
+        if(Integer.valueOf(strAnio) > 50)
+            strAnio = "19" + strAnio;
+        else
+            strAnio = "20" + strAnio;
+                
+        fecha.set(Integer.valueOf(strAnio), Integer.valueOf(strMes) - 1, Integer.valueOf(strDia));        
+        
+        
+        return DatatypeFactory.newInstance().newXMLGregorianCalendar(fecha);        
+        
+    }
+    
     public String getTipoDocumento() {
         return tipoDocumento;
     }
@@ -495,11 +532,11 @@ public class FacturaDena {
         this.codigoComprador = codigoComprador;
     }
 
-    public String getFechaFactura() {
+    public XMLGregorianCalendar getFechaFactura() {
         return fechaFactura;
     }
 
-    public void setFechaFactura(String fechaFactura) {
+    public void setFechaFactura(XMLGregorianCalendar fechaFactura) {
         this.fechaFactura = fechaFactura;
     }
 
@@ -734,4 +771,11 @@ public String getRmRegistroMercantil() {
         this.totalFactura = totalFactura;
     }
 
+    public double getDescuentoTotal() {
+        return descuentoTotal;
+    }
+
+    public void setDescuentoTotal(double descuentoTotal) {
+        this.descuentoTotal = descuentoTotal;
+    }
 }
