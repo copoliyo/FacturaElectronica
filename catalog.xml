@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="file:/C:/Users/Jesus/Documents/NetBeansProjects/FacturaElectronica/src/facturaelectronica/facturaElectronicaXmlSchema.xsd" uri="xml-resources/jaxb/facturaElectronicaJAXB/facturaElectronicaXmlSchema.xsd"/>
+    <system systemId="file:/C:/Users/Txus/Documents/NetBeansProjects/FacturaElectronica/src/facturaelectronica/facturaElectronicaXmlSchema.xsd" uri="xml-resources/jaxb/facturaElectronicaJAXB/facturaElectronicaXmlSchema.xsd"/>
     <system systemId="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd" uri="xml-resources/jaxb/facturaElectronicaJAXB/www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/>
 </catalog>

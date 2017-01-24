@@ -5,16 +5,16 @@
         <Modality>I</Modality>
         <InvoiceIssuerType>EM</InvoiceIssuerType>
         <Batch>
-            <BatchIdentifier>467</BatchIdentifier>
+            <BatchIdentifier>1</BatchIdentifier>
             <InvoicesCount>1</InvoicesCount>
             <TotalInvoicesAmount>
-                <TotalAmount>193.5</TotalAmount>
+                <TotalAmount>31.93</TotalAmount>
             </TotalInvoicesAmount>
             <TotalOutstandingAmount>
-                <TotalAmount>193.5</TotalAmount>
+                <TotalAmount>31.93</TotalAmount>
             </TotalOutstandingAmount>
             <TotalExecutableAmount>
-                <TotalAmount>193.5</TotalAmount>
+                <TotalAmount>31.93</TotalAmount>
             </TotalExecutableAmount>
             <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
         </Batch>
@@ -22,13 +22,12 @@
     <Parties>
         <SellerParty>
             <TaxIdentification>
-                <PersonTypeCode>F</PersonTypeCode>
+                <PersonTypeCode>J</PersonTypeCode>
                 <ResidenceTypeCode>R</ResidenceTypeCode>
-                <TaxIdentificationNumber>: B39366398</TaxIdentificationNumber>
+                <TaxIdentificationNumber>B39366398</TaxIdentificationNumber>
             </TaxIdentification>
             <LegalEntity>
-                <CorporateName>LAREDO COMERCIAL</CorporateName>
-                <TradeName>ALMACENES LAREDO, S.L.</TradeName>
+                <CorporateName>ALMACENES LAREDO, S.L.</CorporateName>
                 <RegistrationData>
                     <Book>L.0</Book>
                     <RegisterOfCompaniesLocation>R.M.Madrid</RegisterOfCompaniesLocation>
@@ -51,18 +50,45 @@
             <TaxIdentification>
                 <PersonTypeCode>J</PersonTypeCode>
                 <ResidenceTypeCode>R</ResidenceTypeCode>
-                <TaxIdentificationNumber>P3903500A</TaxIdentificationNumber>
+                <TaxIdentificationNumber>B48522817</TaxIdentificationNumber>
             </TaxIdentification>
             <LegalEntity>
-                <CorporateName>AYUNTAMIENTO DE LAREDO</CorporateName>
+                <CorporateName>CONSTRUCCIONES OTALOLA S.L.</CorporateName>
                 <AddressInSpain>
-                    <Address>ABELLA 1, 1 2º 3</Address>
-                    <PostCode>39770</PostCode>
-                    <Town>LAREDO</Town>
-                    <Province>Cantabria</Province>
+                    <Address></Address>
+                    <PostCode>48810</PostCode>
+                    <Town></Town>
+                    <Province></Province>
                     <CountryCode>ESP</CountryCode>
                 </AddressInSpain>
             </LegalEntity>
         </BuyerParty>
     </Parties>
+    <Invoices>
+        <Invoice>
+            <InvoiceHeader>
+                <InvoiceNumber>1</InvoiceNumber>
+                <InvoiceDocumentType>FC</InvoiceDocumentType>
+                <InvoiceClass>OO</InvoiceClass>
+            </InvoiceHeader>
+            <InvoiceIssueData>
+                <IssueDate>2017-01-24+01:00</IssueDate>
+                <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
+                <TaxCurrencyCode>EUR</TaxCurrencyCode>
+                <LanguageName>es</LanguageName>
+            </InvoiceIssueData>
+            <TaxesOutputs>
+                <Tax>
+                    <TaxTypeCode>01</TaxTypeCode>
+                    <TaxRate>21.0</TaxRate>
+                    <TaxableBase>
+                        <TotalAmount>26.39</TotalAmount>
+                    </TaxableBase>
+                    <TaxAmount>
+                        <TotalAmount>5.54</TotalAmount>
+                    </TaxAmount>
+                </Tax>
+            </TaxesOutputs>
+        </Invoice>
+    </Invoices>
 </ns3:Facturae>
