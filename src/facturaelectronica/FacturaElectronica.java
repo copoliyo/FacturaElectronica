@@ -11,7 +11,10 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -190,7 +193,7 @@ public class FacturaElectronica {
         AmountType importeIva = new AmountType();
         // En la factura de Dena, no viene el importe del IVA, lo calculamos, pero
         // si hay mezclados tipos de IVA distintos --> NO FUNCIONARA
-        importeIva.setTotalAmount(redondearDecimales(facturaDena.getImporteIva(), 2));
+        importeIva.setTotalAmount(redondearDecimales(facturaDena.getImporteIva()));
 
         AmountType tableBase = new AmountType();
         tableBase.setTotalAmount(facturaDena.getBaseFactura());
@@ -247,11 +250,13 @@ public class FacturaElectronica {
             invoiceLineTax.setTaxRate(facturaDena.getPorcentajeIva());
             // Ojo si hay descuentos, no está implementado
             AmountType invoiceLinetaxableBase = new AmountType();
-            invoiceLinetaxableBase.setTotalAmount(lineaFactura.getImporte());            
+            invoiceLinetaxableBase.setTotalAmount(redondearDecimales(lineaFactura.getImporte()));            
             invoiceLineTax.setTaxableBase(invoiceLinetaxableBase);
             
             AmountType invoiceLineTaxAmount = new AmountType();
-            invoiceLineTaxAmount.setTotalAmount(redondearDecimales((lineaFactura.getImporte() * facturaDena.getPorcentajeIva() / 100), 2));
+            // double lineaIva = redondearDecimales((lineaFactura.getImporte() * facturaDena.getPorcentajeIva() / 100.00), 8);
+            double lineaIva = redondearDecimales(((lineaFactura.getImporte() * facturaDena.getPorcentajeIva()) / 100.00));
+            invoiceLineTaxAmount.setTotalAmount(lineaIva);
             invoiceLineTax.setTaxAmount(invoiceLineTaxAmount);                        
             
             invoiceLineTaxesOutputs.getTax().add(invoiceLineTax);           
@@ -296,14 +301,18 @@ public class FacturaElectronica {
         return doubleFormateado;
     }
 
-    public static double redondearDecimales(double valorInicial, int numeroDecimales) {
-        double parteEntera, resultado;
-        resultado = valorInicial;
-        parteEntera = Math.floor(resultado);
-        resultado = (resultado - parteEntera) * Math.pow(10, numeroDecimales);
-        resultado = Math.round(resultado);
-        resultado = (resultado / Math.pow(10, numeroDecimales)) + parteEntera;
-        return resultado;
+    public static double redondearDecimales(double valorInicial) {
+                
+        DecimalFormat df = new DecimalFormat("0.00");
+        String formate = df.format(valorInicial);
+        double finalValue = 0.0;
+        try {
+            finalValue = (Double) df.parse(formate);
+        } catch (ParseException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return finalValue;        
     }
 
 }
