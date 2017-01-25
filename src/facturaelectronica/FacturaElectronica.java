@@ -190,7 +190,7 @@ public class FacturaElectronica {
         AmountType importeIva = new AmountType();
         // En la factura de Dena, no viene el importe del IVA, lo calculamos, pero
         // si hay mezclados tipos de IVA distintos --> NO FUNCIONARA
-        importeIva.setTotalAmount(redondearDecimales(facturaDena.getTotalFactura(), 2));
+        importeIva.setTotalAmount(redondearDecimales(facturaDena.getImporteIva(), 2));
 
         AmountType tableBase = new AmountType();
         tableBase.setTotalAmount(facturaDena.getBaseFactura());
@@ -208,7 +208,19 @@ public class FacturaElectronica {
 
         InvoiceTotalsType invoiceTotals = new InvoiceTotalsType();
 
-        invoiceTotals.setTotalGrossAmount(facturaDena.getTotalFactura());
+        invoiceTotals.setTotalGrossAmount(facturaDena.getBaseFactura());
+        invoiceTotals.setTotalGrossAmountBeforeTaxes(facturaDena.getBaseFactura());
+        invoiceTotals.setTotalTaxOutputs(facturaDena.getImporteIva() + facturaDena.getImporteRecargoEquivalencia());
+        invoiceTotals.setTotalTaxOutputs(facturaDena.getImporteIva());
+        invoiceTotals.setTotalTaxesWithheld(facturaDena.getImporteRecargoEquivalencia());
+        invoiceTotals.setInvoiceTotal(facturaDena.getTotalFactura());
+        invoiceTotals.setTotalOutstandingAmount(facturaDena.getTotalFactura());
+        invoiceTotals.setTotalExecutableAmount(facturaDena.getTotalFactura());
+        
+        invoice.setInvoiceTotals(invoiceTotals);
+        
+        ItemsType items = new ItemsType();
+        
         
         
         Iterator<LineaFactura> itLineaFactura = facturaDena.getLineasFactura().iterator();
@@ -216,9 +228,39 @@ public class FacturaElectronica {
         ////////////////////////  Lineas de factura
         while (itLineaFactura.hasNext()) {
             lineaFactura = itLineaFactura.next();
+            InvoiceLineType invoiceLine = new InvoiceLineType();
+                        
+            invoiceLine.setItemDescription(lineaFactura.getDescripcionArticulo());
+            invoiceLine.setQuantity((double)lineaFactura.getCantidad());
+            invoiceLine.setUnitPriceWithoutTax(lineaFactura.getPrecio());
+            invoiceLine.setTotalCost(lineaFactura.getImporte());
+            // Ojo si hay descuentos, no está implementado
+            invoiceLine.setGrossAmount(lineaFactura.getImporte());
+            
+            InvoiceLineType.TaxesOutputs invoiceLineTaxesOutputs = new InvoiceLineType.TaxesOutputs();
+            
+            
+            InvoiceLineType.TaxesOutputs.Tax invoiceLineTax = new InvoiceLineType.TaxesOutputs.Tax();
 
+            //TaxOutputType invoiceLineTax = new TaxOutputType();
+            invoiceLineTax.setTaxTypeCode("01");
+            invoiceLineTax.setTaxRate(facturaDena.getPorcentajeIva());
+            // Ojo si hay descuentos, no está implementado
+            AmountType invoiceLinetaxableBase = new AmountType();
+            invoiceLinetaxableBase.setTotalAmount(lineaFactura.getImporte());            
+            invoiceLineTax.setTaxableBase(invoiceLinetaxableBase);
+            
+            AmountType invoiceLineTaxAmount = new AmountType();
+            invoiceLineTaxAmount.setTotalAmount(redondearDecimales((lineaFactura.getImporte() * facturaDena.getPorcentajeIva() / 100), 2));
+            invoiceLineTax.setTaxAmount(invoiceLineTaxAmount);                        
+            
+            invoiceLineTaxesOutputs.getTax().add(invoiceLineTax);           
+            invoiceLine.setTaxesOutputs(invoiceLineTaxesOutputs);
+            
+            items.getInvoiceLine().add(invoiceLine);
         }
 
+        invoice.setItems(items);
         invoices.getInvoice().add(invoice);
 
         facturae.setInvoices(invoices);

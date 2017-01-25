@@ -5,16 +5,16 @@
         <Modality>I</Modality>
         <InvoiceIssuerType>EM</InvoiceIssuerType>
         <Batch>
-            <BatchIdentifier>467</BatchIdentifier>
+            <BatchIdentifier>476</BatchIdentifier>
             <InvoicesCount>1</InvoicesCount>
             <TotalInvoicesAmount>
-                <TotalAmount>193.5</TotalAmount>
+                <TotalAmount>31.93</TotalAmount>
             </TotalInvoicesAmount>
             <TotalOutstandingAmount>
-                <TotalAmount>193.5</TotalAmount>
+                <TotalAmount>31.93</TotalAmount>
             </TotalOutstandingAmount>
             <TotalExecutableAmount>
-                <TotalAmount>193.5</TotalAmount>
+                <TotalAmount>31.93</TotalAmount>
             </TotalExecutableAmount>
             <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
         </Batch>
@@ -22,9 +22,9 @@
     <Parties>
         <SellerParty>
             <TaxIdentification>
-                <PersonTypeCode>F</PersonTypeCode>
+                <PersonTypeCode>J</PersonTypeCode>
                 <ResidenceTypeCode>R</ResidenceTypeCode>
-                <TaxIdentificationNumber>: B39366398</TaxIdentificationNumber>
+                <TaxIdentificationNumber>B39366398</TaxIdentificationNumber>
             </TaxIdentification>
             <LegalEntity>
                 <CorporateName>LAREDO COMERCIAL</CorporateName>
@@ -51,15 +51,15 @@
             <TaxIdentification>
                 <PersonTypeCode>J</PersonTypeCode>
                 <ResidenceTypeCode>R</ResidenceTypeCode>
-                <TaxIdentificationNumber>P3903500A</TaxIdentificationNumber>
+                <TaxIdentificationNumber>B39287172</TaxIdentificationNumber>
             </TaxIdentification>
             <LegalEntity>
-                <CorporateName>AYUNTAMIENTO DE LAREDO</CorporateName>
+                <CorporateName>T.F.HOSTELERIA S.L.</CorporateName>
                 <AddressInSpain>
-                    <Address>ABELLA 1, 1 2º 3</Address>
-                    <PostCode>39770</PostCode>
+                    <Address>AIGUA,L' 2</Address>
+                    <PostCode>44155</PostCode>
                     <Town>LAREDO</Town>
-                    <Province>Cantabria</Province>
+                    <Province>Teruel</Province>
                     <CountryCode>ESP</CountryCode>
                 </AddressInSpain>
             </LegalEntity>
@@ -68,12 +68,12 @@
     <Invoices>
         <Invoice>
             <InvoiceHeader>
-                <InvoiceNumber>467</InvoiceNumber>
+                <InvoiceNumber>476</InvoiceNumber>
                 <InvoiceDocumentType>FC</InvoiceDocumentType>
                 <InvoiceClass>OO</InvoiceClass>
             </InvoiceHeader>
             <InvoiceIssueData>
-                <IssueDate>2016-01-27</IssueDate>
+                <IssueDate>2016-11-24</IssueDate>
                 <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
                 <TaxCurrencyCode>EUR</TaxCurrencyCode>
                 <LanguageName>es</LanguageName>
@@ -83,13 +83,43 @@
                     <TaxTypeCode>01</TaxTypeCode>
                     <TaxRate>21.0</TaxRate>
                     <TaxableBase>
-                        <TotalAmount>159.92</TotalAmount>
+                        <TotalAmount>26.39</TotalAmount>
                     </TaxableBase>
                     <TaxAmount>
-                        <TotalAmount>33.58</TotalAmount>
+                        <TotalAmount>5.54</TotalAmount>
                     </TaxAmount>
                 </Tax>
             </TaxesOutputs>
+            <InvoiceTotals>
+                <TotalGrossAmount>26.39</TotalGrossAmount>
+                <TotalGrossAmountBeforeTaxes>26.39</TotalGrossAmountBeforeTaxes>
+                <TotalTaxOutputs>5.54</TotalTaxOutputs>
+                <TotalTaxesWithheld>0.0</TotalTaxesWithheld>
+                <InvoiceTotal>31.93</InvoiceTotal>
+                <TotalOutstandingAmount>31.93</TotalOutstandingAmount>
+                <TotalExecutableAmount>31.93</TotalExecutableAmount>
+            </InvoiceTotals>
+            <Items>
+                <InvoiceLine>
+                    <ItemDescription>ALMOHADILLA DAGA 38x27</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>26.39</UnitPriceWithoutTax>
+                    <TotalCost>26.39</TotalCost>
+                    <GrossAmount>26.39</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>26.39</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>5.54</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+            </Items>
         </Invoice>
     </Invoices>
 </ns3:Facturae>
