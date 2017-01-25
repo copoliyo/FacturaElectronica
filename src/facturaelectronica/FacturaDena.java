@@ -265,7 +265,7 @@ public class FacturaDena {
                                     case 5:
                                         switch (lineaDena.getSubnivel()) {
                                             case 1:
-                                                int posNifVendedor = lineaDena.getValor().indexOf("Nif:");
+                                                int posNifVendedor = lineaDena.getValor().indexOf("Cif:");                                                
                                                 nifVendedor = lineaDena.getValor().substring(posNifVendedor + 4, posNifVendedor + 4 + 11).trim();
 
                                                 int posTlfnVendedor = lineaDena.getValor().indexOf("Tlfn:");
