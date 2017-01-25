@@ -14,6 +14,7 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -504,7 +505,14 @@ public class FacturaDena {
         fecha.set(Integer.valueOf(strAnio), Integer.valueOf(strMes) - 1, Integer.valueOf(strDia));        
         
         
-        return DatatypeFactory.newInstance().newXMLGregorianCalendar(fecha);        
+        return DatatypeFactory.newInstance().newXMLGregorianCalendar(fecha.get(Calendar.YEAR), 
+                                                                     fecha.get(Calendar.MONTH) + 1,
+                                                                     fecha.get(Calendar.DAY_OF_MONTH),
+                                                                     DatatypeConstants.FIELD_UNDEFINED,
+                                                                     DatatypeConstants.FIELD_UNDEFINED, 
+                                                                     DatatypeConstants.FIELD_UNDEFINED, 
+                                                                     DatatypeConstants.FIELD_UNDEFINED, 
+                                                                     DatatypeConstants.FIELD_UNDEFINED);        
         
     }
     
