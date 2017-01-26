@@ -5,16 +5,16 @@
         <Modality>I</Modality>
         <InvoiceIssuerType>EM</InvoiceIssuerType>
         <Batch>
-            <BatchIdentifier>476</BatchIdentifier>
+            <BatchIdentifier>467</BatchIdentifier>
             <InvoicesCount>1</InvoicesCount>
             <TotalInvoicesAmount>
-                <TotalAmount>31.93</TotalAmount>
+                <TotalAmount>193.42</TotalAmount>
             </TotalInvoicesAmount>
             <TotalOutstandingAmount>
-                <TotalAmount>31.93</TotalAmount>
+                <TotalAmount>193.42</TotalAmount>
             </TotalOutstandingAmount>
             <TotalExecutableAmount>
-                <TotalAmount>31.93</TotalAmount>
+                <TotalAmount>193.42</TotalAmount>
             </TotalExecutableAmount>
             <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
         </Batch>
@@ -27,8 +27,7 @@
                 <TaxIdentificationNumber>B39366398</TaxIdentificationNumber>
             </TaxIdentification>
             <LegalEntity>
-                <CorporateName>LAREDO COMERCIAL</CorporateName>
-                <TradeName>ALMACENES LAREDO, S.L.</TradeName>
+                <CorporateName>ALMACENES LAREDO, S.L.</CorporateName>
                 <RegistrationData>
                     <Book>L.0</Book>
                     <RegisterOfCompaniesLocation>R.M.Madrid</RegisterOfCompaniesLocation>
@@ -51,15 +50,15 @@
             <TaxIdentification>
                 <PersonTypeCode>J</PersonTypeCode>
                 <ResidenceTypeCode>R</ResidenceTypeCode>
-                <TaxIdentificationNumber>B39287172</TaxIdentificationNumber>
+                <TaxIdentificationNumber>P3903500A</TaxIdentificationNumber>
             </TaxIdentification>
             <LegalEntity>
-                <CorporateName>T.F.HOSTELERIA S.L.</CorporateName>
+                <CorporateName>AYUNTAMIENTO DE LAREDO</CorporateName>
                 <AddressInSpain>
-                    <Address>AIGUA,L' 2</Address>
-                    <PostCode>44155</PostCode>
-                    <Town>LAREDO</Town>
-                    <Province>Teruel</Province>
+                    <Address></Address>
+                    <PostCode>39770</PostCode>
+                    <Town></Town>
+                    <Province></Province>
                     <CountryCode>ESP</CountryCode>
                 </AddressInSpain>
             </LegalEntity>
@@ -68,12 +67,12 @@
     <Invoices>
         <Invoice>
             <InvoiceHeader>
-                <InvoiceNumber>476</InvoiceNumber>
+                <InvoiceNumber>467</InvoiceNumber>
                 <InvoiceDocumentType>FC</InvoiceDocumentType>
                 <InvoiceClass>OO</InvoiceClass>
             </InvoiceHeader>
             <InvoiceIssueData>
-                <IssueDate>2016-11-24</IssueDate>
+                <IssueDate>2016-01-27</IssueDate>
                 <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
                 <TaxCurrencyCode>EUR</TaxCurrencyCode>
                 <LanguageName>es</LanguageName>
@@ -83,38 +82,247 @@
                     <TaxTypeCode>01</TaxTypeCode>
                     <TaxRate>21.0</TaxRate>
                     <TaxableBase>
-                        <TotalAmount>26.39</TotalAmount>
+                        <TotalAmount>159.85</TotalAmount>
                     </TaxableBase>
                     <TaxAmount>
-                        <TotalAmount>5.54</TotalAmount>
+                        <TotalAmount>33.57</TotalAmount>
                     </TaxAmount>
                 </Tax>
             </TaxesOutputs>
             <InvoiceTotals>
-                <TotalGrossAmount>26.39</TotalGrossAmount>
-                <TotalGrossAmountBeforeTaxes>26.39</TotalGrossAmountBeforeTaxes>
-                <TotalTaxOutputs>5.54</TotalTaxOutputs>
+                <TotalGrossAmount>159.85</TotalGrossAmount>
+                <TotalGrossAmountBeforeTaxes>159.85</TotalGrossAmountBeforeTaxes>
+                <TotalTaxOutputs>33.57</TotalTaxOutputs>
                 <TotalTaxesWithheld>0.0</TotalTaxesWithheld>
-                <InvoiceTotal>31.93</InvoiceTotal>
-                <TotalOutstandingAmount>31.93</TotalOutstandingAmount>
-                <TotalExecutableAmount>31.93</TotalExecutableAmount>
+                <InvoiceTotal>193.42</InvoiceTotal>
+                <TotalOutstandingAmount>193.42</TotalOutstandingAmount>
+                <TotalExecutableAmount>193.42</TotalExecutableAmount>
             </InvoiceTotals>
             <Items>
                 <InvoiceLine>
-                    <ItemDescription>ALMOHADILLA DAGA 38x27</ItemDescription>
-                    <Quantity>1.0</Quantity>
-                    <UnitPriceWithoutTax>26.39</UnitPriceWithoutTax>
-                    <TotalCost>26.39</TotalCost>
-                    <GrossAmount>26.39</GrossAmount>
+                    <ItemDescription>COPIAS LLAVES</ItemDescription>
+                    <Quantity>7.0</Quantity>
+                    <UnitPriceWithoutTax>1.07</UnitPriceWithoutTax>
+                    <TotalCost>7.49</TotalCost>
+                    <GrossAmount>7.49</GrossAmount>
                     <TaxesOutputs>
                         <Tax>
                             <TaxTypeCode>01</TaxTypeCode>
                             <TaxRate>21.0</TaxRate>
                             <TaxableBase>
-<TotalAmount>26.39</TotalAmount>
+<TotalAmount>7.49</TotalAmount>
                             </TaxableBase>
                             <TaxAmount>
-<TotalAmount>5.54</TotalAmount>
+<TotalAmount>1.57</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>LLAVERO</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>0.12</UnitPriceWithoutTax>
+                    <TotalCost>0.12</TotalCost>
+                    <GrossAmount>0.12</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>0.12</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>0.03</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>PACK PILAS AA</ItemDescription>
+                    <Quantity>2.0</Quantity>
+                    <UnitPriceWithoutTax>2.89</UnitPriceWithoutTax>
+                    <TotalCost>5.78</TotalCost>
+                    <GrossAmount>5.78</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>5.78</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>1.21</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>BROCA</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>3.02</UnitPriceWithoutTax>
+                    <TotalCost>3.02</TotalCost>
+                    <GrossAmount>3.02</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>3.02</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>0.63</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>PACK PILAS RECARGABLES AA</ItemDescription>
+                    <Quantity>2.0</Quantity>
+                    <UnitPriceWithoutTax>12.81</UnitPriceWithoutTax>
+                    <TotalCost>25.62</TotalCost>
+                    <GrossAmount>25.62</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>25.62</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>5.38</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>PARAGUERO</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>9.83</UnitPriceWithoutTax>
+                    <TotalCost>9.83</TotalCost>
+                    <GrossAmount>9.83</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>9.83</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>2.06</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>CINTA AISLANTE</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>0.83</UnitPriceWithoutTax>
+                    <TotalCost>0.83</TotalCost>
+                    <GrossAmount>0.83</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>0.83</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>0.17</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>TABLT LIBRE NEVIR 3G 8GB</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>81.82</UnitPriceWithoutTax>
+                    <TotalCost>81.82</TotalCost>
+                    <GrossAmount>81.82</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>81.82</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>17.18</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>BOMBILLA SETA HALOGENA</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>3.47</UnitPriceWithoutTax>
+                    <TotalCost>3.47</TotalCost>
+                    <GrossAmount>3.47</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>3.47</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>0.73</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>PACK PILAS AA</ItemDescription>
+                    <Quantity>2.0</Quantity>
+                    <UnitPriceWithoutTax>2.89</UnitPriceWithoutTax>
+                    <TotalCost>5.78</TotalCost>
+                    <GrossAmount>5.78</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>5.78</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>1.21</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>COPIA LLAVE</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>1.07</UnitPriceWithoutTax>
+                    <TotalCost>1.07</TotalCost>
+                    <GrossAmount>1.07</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>1.07</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>0.22</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>CABLE USB-MIN IUSB</ItemDescription>
+                    <Quantity>2.0</Quantity>
+                    <UnitPriceWithoutTax>7.52</UnitPriceWithoutTax>
+                    <TotalCost>15.04</TotalCost>
+                    <GrossAmount>15.04</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>15.04</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>3.16</TotalAmount>
                             </TaxAmount>
                         </Tax>
                     </TaxesOutputs>
@@ -122,4 +330,9 @@
             </Items>
         </Invoice>
     </Invoices>
+    <ns2:Signature Id="1234567890">
+        <ns2:SignedInfo Id="0987654321">
+            <ns2:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+        </ns2:SignedInfo>
+    </ns2:Signature>
 </ns3:Facturae>

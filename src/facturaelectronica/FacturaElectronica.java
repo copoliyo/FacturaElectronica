@@ -7,6 +7,7 @@ package facturaelectronica;
 
 import es.facturae.facturae._2014.v3_2_1.facturae.*;
 import es.facturae.facturae._2014.v3_2_1.facturae.InvoiceType.TaxesOutputs;
+import org.w3._2000._09.xmldsig.*;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -19,6 +20,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.datatype.XMLGregorianCalendar;
+
 
 /**
  *
@@ -269,10 +271,23 @@ public class FacturaElectronica {
         invoices.getInvoice().add(invoice);
 
         facturae.setInvoices(invoices);
-
-        //////////////////////
-        AccountType account = new AccountType();
-        account.setAccountNumber("ES1201234567890123456789");
+        
+        
+        ///// A partir de aquí, la firma....
+        
+        SignatureType signature = new SignatureType();        
+        signature.setId("1234567890");
+        SignedInfoType signedInfo = new SignedInfoType();
+        signedInfo.setId("0987654321");
+        
+        CanonicalizationMethodType canonicalizationMethod = new CanonicalizationMethodType();
+        canonicalizationMethod.setAlgorithm("http://www.w3.org/TR/2001/REC-xml-c14n-20010315");
+        signedInfo.setCanonicalizationMethod(canonicalizationMethod);
+        
+        signature.setSignedInfo(signedInfo);
+        
+        facturae.setSignature(signature);
+        
 
         File f = new File("new.xml");
 
