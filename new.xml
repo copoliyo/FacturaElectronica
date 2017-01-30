@@ -330,9 +330,4 @@
             </Items>
         </Invoice>
     </Invoices>
-    <ns2:Signature Id="1234567890">
-        <ns2:SignedInfo Id="0987654321">
-            <ns2:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
-        </ns2:SignedInfo>
-    </ns2:Signature>
 </ns3:Facturae>
