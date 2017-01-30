@@ -368,7 +368,7 @@ public class FacturaElectronica {
 
         // Create a DOMSignContext and specify the RSA PrivateKey and
         // location of the resulting XMLSignature's parent element.
-        DOMSignContext dsc = new DOMSignContext((Key) keyEntry.getTrustedCertificate(), doc.getDocumentElement());
+        DOMSignContext dsc = new DOMSignContext( keyEntry.getTrustedCertificate(), doc.getDocumentElement());
         
         // Create the XMLSignature, but don't sign it yet.
         XMLSignature signature = fac.newXMLSignature(si, ki);
