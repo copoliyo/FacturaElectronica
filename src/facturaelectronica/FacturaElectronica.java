@@ -10,7 +10,10 @@ import es.facturae.facturae._2014.v3_2_1.facturae.InvoiceType.TaxesOutputs;
 import org.w3._2000._09.xmldsig.*;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.Key;
 import java.security.KeyStore;
@@ -50,6 +53,12 @@ import javax.xml.crypto.dsig.spec.TransformParameterSpec;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -63,23 +72,20 @@ public class FacturaElectronica {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidAlgorithmParameterException, KeyStoreException, CertificateException, UnrecoverableEntryException, SAXException, MarshalException, XMLSignatureException {
+    public static void main(String[] args){
         // TODO code application logic here
 
         FacturaDena fd = new FacturaDena();
         if (fd.cargaDesdeFichero()) {
             System.out.println("Factura Dena cargada.");
-            try {
-                generaXmlFacturaE(fd);
-            } catch (JAXBException | IOException | ParserConfigurationException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            
+            generaXmlFacturaE(fd);
+            firmaXML();
         }
 
     }
 
-    public static void generaXmlFacturaE(FacturaDena facturaDena) throws JAXBException, IOException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, KeyStoreException, CertificateException, UnrecoverableEntryException, ParserConfigurationException, SAXException, MarshalException, XMLSignatureException {
+    public static void generaXmlFacturaE(FacturaDena facturaDena) {
         Facturae facturae = new Facturae();
 
         FileHeaderType fileHeader = new FileHeaderType();
@@ -306,51 +312,92 @@ public class FacturaElectronica {
         
          File f = new File("new.xml");
 
-        JAXBContext context = JAXBContext.newInstance(Facturae.class);
+        JAXBContext context = null;
+        try {
+            context = JAXBContext.newInstance(Facturae.class);
+            Marshaller jaxbMarshaller = context.createMarshaller();
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-        Marshaller jaxbMarshaller = context.createMarshaller();
-        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            //jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING, javax.xml.XMLConstants.DEFAULT_NS_PREFIX);
+            jaxbMarshaller.marshal(facturae, f);
+            jaxbMarshaller.marshal(facturae, System.out);
+        } catch (JAXBException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        //jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING, javax.xml.XMLConstants.DEFAULT_NS_PREFIX);
-        jaxbMarshaller.marshal(facturae, f);
-        jaxbMarshaller.marshal(facturae, System.out);
         
         
-        
-        
+    }
+    
+    
+    public static void firmaXML(){
+                         
         ///// A partir de aquí, la firma....
         
         // Create a DOM XMLSignatureFactory that will be used to
         // generate the enveloped signature.
-        XMLSignatureFactory fac = XMLSignatureFactory.getInstance("DOM");       
+        XMLSignatureFactory fac = XMLSignatureFactory.getInstance("DOM");
 
         // Create a Reference to the enveloped document (in this case,
         // you are signing the whole document, so a URI of "" signifies
         // that, and also specify the SHA1 digest algorithm and
         // the ENVELOPED Transform.
-        Reference ref = fac.newReference("", fac.newDigestMethod(DigestMethod.SHA1, null),
-                Collections.singletonList(fac.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null)),
-                null, null);
-        
-        // Create the SignedInfo.
-        SignedInfo si = fac.newSignedInfo(fac.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE,
-                (C14NMethodParameterSpec) null),
-                fac.newSignatureMethod(SignatureMethod.RSA_SHA1, null),
-                Collections.singletonList(ref));                     
-        
-       
-       
+        Reference ref = null;
+        try {
+            ref = fac.newReference("", fac.newDigestMethod(DigestMethod.SHA1, null),
+                    Collections.singletonList(fac.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null)),
+                    null, null);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidAlgorithmParameterException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        SignedInfo si = null;
+        try {
+            // Create the SignedInfo.
+            si = fac.newSignedInfo(fac.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE,
+                    (C14NMethodParameterSpec) null),
+                    fac.newSignatureMethod(SignatureMethod.RSA_SHA1, null),
+                    Collections.singletonList(ref));
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidAlgorithmParameterException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         // Load the KeyStore and get the signing key and certificate.
-        KeyStore ks = KeyStore.getInstance("JKS");
-        ks.load(new FileInputStream("C:\\Users\\Txus\\.keystore"), "copoliyo".toCharArray());
+        KeyStore ks = null;
+        try {
+            ks = KeyStore.getInstance("JKS");
+        } catch (KeyStoreException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            ks.load(new FileInputStream("c:\\Users\\Txus\\.keystore"), "copoliyo".toCharArray());
+        } catch (IOException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (CertificateException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        KeyStore.PrivateKeyEntry keyEntry = null;
         
-        //KeyStore.PrivateKeyEntry keyEntry
-        //        = (KeyStore.PrivateKeyEntry) ks.getEntry("mykey", new KeyStore.PasswordProtection("copoliyo".toCharArray()));
         
-        KeyStore.TrustedCertificateEntry keyEntry = (KeyStore.TrustedCertificateEntry) ks.getEntry("mykey", null);
-        //X509Certificate cert = (X509Certificate) keyEntry.getCertificate();
+        try {            
+            keyEntry = (KeyStore.PrivateKeyEntry) ks.getEntry("jesus", new KeyStore.PasswordProtection("copoliyo".toCharArray()));
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnrecoverableEntryException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (KeyStoreException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        X509Certificate cert = (X509Certificate) keyEntry.getTrustedCertificate();
+
+        
+        X509Certificate cert = (X509Certificate) keyEntry.getCertificate();
 
         // Create the KeyInfo containing the X509Data.
         KeyInfoFactory kif = fac.getKeyInfoFactory();
@@ -360,28 +407,63 @@ public class FacturaElectronica {
         X509Data xd = kif.newX509Data(x509Content);
         KeyInfo ki = kif.newKeyInfo(Collections.singletonList(xd));
         
-        
         // Instantiate the document to be signed.
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setNamespaceAware(true);
-        Document doc = dbf.newDocumentBuilder().parse(new FileInputStream("new.xml"));
+        Document doc = null;
+        try {
+            try {
+                doc = dbf.newDocumentBuilder().parse(new FileInputStream("new.xml"));
+            } catch (SAXException ex) {
+                Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         // Create a DOMSignContext and specify the RSA PrivateKey and
         // location of the resulting XMLSignature's parent element.
-        DOMSignContext dsc = new DOMSignContext( keyEntry.getTrustedCertificate(), doc.getDocumentElement());
-        
+        DOMSignContext dsc = new DOMSignContext(keyEntry.getPrivateKey(), doc.getDocumentElement());
+
         // Create the XMLSignature, but don't sign it yet.
+        
         XMLSignature signature = fac.newXMLSignature(si, ki);
 
-        // Marshal, generate, and sign the enveloped signature.
-        signature.sign(dsc);
         
         
-       
-        
+        try {
+            // Marshal, generate, and sign the enveloped signature.
+            signature.sign(dsc);
+        } catch (MarshalException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (XMLSignatureException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-       
 
+        
+        // Output the resulting document.
+        OutputStream os = null;
+        try {
+            os = new FileOutputStream("newFirmado.xml");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        TransformerFactory tf = TransformerFactory.newInstance();
+        Transformer trans = null;
+        try {
+            trans = tf.newTransformer();
+        } catch (TransformerConfigurationException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            trans.transform(new DOMSource(doc), new StreamResult(os));
+        } catch (TransformerException ex) {
+            Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     public static double formatoConComaDecimal(double doubleSinFormato) {
