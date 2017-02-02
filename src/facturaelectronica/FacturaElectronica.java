@@ -353,6 +353,8 @@ public class FacturaElectronica {
             Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        fac.
+            
         SignedInfo si = null;
         try {
             // Create the SignedInfo.
@@ -365,7 +367,8 @@ public class FacturaElectronica {
         } catch (InvalidAlgorithmParameterException ex) {
             Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+       
         // Load the KeyStore and get the signing key and certificate.
         KeyStore ks = null;
         try {
@@ -386,7 +389,7 @@ public class FacturaElectronica {
         
         
         try {            
-            keyEntry = (KeyStore.PrivateKeyEntry) ks.getEntry("jesus", new KeyStore.PasswordProtection("copoliyo".toCharArray()));
+            keyEntry = (KeyStore.PrivateKeyEntry) ks.getEntry("jesusm", new KeyStore.PasswordProtection("copoliyo".toCharArray()));
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnrecoverableEntryException ex) {
@@ -406,10 +409,11 @@ public class FacturaElectronica {
         x509Content.add(cert);
         X509Data xd = kif.newX509Data(x509Content);
         KeyInfo ki = kif.newKeyInfo(Collections.singletonList(xd));
-        
+                
+               
         // Instantiate the document to be signed.
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        dbf.setNamespaceAware(true);
+        dbf.setNamespaceAware(true);        
         Document doc = null;
         try {
             try {
@@ -423,14 +427,14 @@ public class FacturaElectronica {
             Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        
         // Create a DOMSignContext and specify the RSA PrivateKey and
         // location of the resulting XMLSignature's parent element.
         DOMSignContext dsc = new DOMSignContext(keyEntry.getPrivateKey(), doc.getDocumentElement());
-
+        
         // Create the XMLSignature, but don't sign it yet.
         
-        XMLSignature signature = fac.newXMLSignature(si, ki);
-
+        XMLSignature signature = fac.newXMLSignature(si, ki); 
         
         
         try {

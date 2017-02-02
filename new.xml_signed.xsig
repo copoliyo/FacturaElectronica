@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns3:Facturae xmlns:ns2="http://www.w3.org/2000/09/xmldsig#" xmlns:ns3="http://www.facturae.es/Facturae/2014/v3.2.1/Facturae">
+    <FileHeader>
+        <SchemaVersion>3.2.1</SchemaVersion>
+        <Modality>I</Modality>
+        <InvoiceIssuerType>EM</InvoiceIssuerType>
+        <Batch>
+            <BatchIdentifier>467</BatchIdentifier>
+            <InvoicesCount>1</InvoicesCount>
+            <TotalInvoicesAmount>
+                <TotalAmount>193.42</TotalAmount>
+            </TotalInvoicesAmount>
+            <TotalOutstandingAmount>
+                <TotalAmount>193.42</TotalAmount>
+            </TotalOutstandingAmount>
+            <TotalExecutableAmount>
+                <TotalAmount>193.42</TotalAmount>
+            </TotalExecutableAmount>
+            <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
+        </Batch>
+    </FileHeader>
+    <Parties>
+        <SellerParty>
+            <TaxIdentification>
+                <PersonTypeCode>J</PersonTypeCode>
+                <ResidenceTypeCode>R</ResidenceTypeCode>
+                <TaxIdentificationNumber>B39366398</TaxIdentificationNumber>
+            </TaxIdentification>
+            <LegalEntity>
+                <CorporateName>ALMACENES LAREDO, S.L.</CorporateName>
+                <RegistrationData>
+                    <Book>L.0</Book>
+                    <RegisterOfCompaniesLocation>R.M.Madrid</RegisterOfCompaniesLocation>
+                    <Sheet>H.M-120178</Sheet>
+                    <Folio>F.1</Folio>
+                    <Section>S.8</Section>
+                    <Volume>T.7428</Volume>
+                    <AdditionalRegistrationData>Inscripcion I.27</AdditionalRegistrationData>
+                </RegistrationData>
+                <AddressInSpain>
+                    <Address>Eguilior 6</Address>
+                    <PostCode>39770</PostCode>
+                    <Town>LAREDO</Town>
+                    <Province>(Cantabria)</Province>
+                    <CountryCode>ESP</CountryCode>
+                </AddressInSpain>
+            </LegalEntity>
+        </SellerParty>
+        <BuyerParty>
+            <TaxIdentification>
+                <PersonTypeCode>J</PersonTypeCode>
+                <ResidenceTypeCode>R</ResidenceTypeCode>
+                <TaxIdentificationNumber>P3903500A</TaxIdentificationNumber>
+            </TaxIdentification>
+            <LegalEntity>
+                <CorporateName>AYUNTAMIENTO DE LAREDO</CorporateName>
+                <AddressInSpain>
+                    <Address/>
+                    <PostCode>39770</PostCode>
+                    <Town/>
+                    <Province/>
+                    <CountryCode>ESP</CountryCode>
+                </AddressInSpain>
+            </LegalEntity>
+        </BuyerParty>
+    </Parties>
+    <Invoices>
+        <Invoice>
+            <InvoiceHeader>
+                <InvoiceNumber>467</InvoiceNumber>
+                <InvoiceDocumentType>FC</InvoiceDocumentType>
+                <InvoiceClass>OO</InvoiceClass>
+            </InvoiceHeader>
+            <InvoiceIssueData>
+                <IssueDate>2016-01-27</IssueDate>
+                <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
+                <TaxCurrencyCode>EUR</TaxCurrencyCode>
+                <LanguageName>es</LanguageName>
+            </InvoiceIssueData>
+            <TaxesOutputs>
+                <Tax>
+                    <TaxTypeCode>01</TaxTypeCode>
+                    <TaxRate>21.0</TaxRate>
+                    <TaxableBase>
+                        <TotalAmount>159.85</TotalAmount>
+                    </TaxableBase>
+                    <TaxAmount>
+                        <TotalAmount>33.57</TotalAmount>
+                    </TaxAmount>
+                </Tax>
+            </TaxesOutputs>
+            <InvoiceTotals>
+                <TotalGrossAmount>159.85</TotalGrossAmount>
+                <TotalGrossAmountBeforeTaxes>159.85</TotalGrossAmountBeforeTaxes>
+                <TotalTaxOutputs>33.57</TotalTaxOutputs>
+                <TotalTaxesWithheld>0.0</TotalTaxesWithheld>
+                <InvoiceTotal>193.42</InvoiceTotal>
+                <TotalOutstandingAmount>193.42</TotalOutstandingAmount>
+                <TotalExecutableAmount>193.42</TotalExecutableAmount>
+            </InvoiceTotals>
+            <Items>
+                <InvoiceLine>
+                    <ItemDescription>COPIAS LLAVES</ItemDescription>
+                    <Quantity>7.0</Quantity>
+                    <UnitPriceWithoutTax>1.07</UnitPriceWithoutTax>
+                    <TotalCost>7.49</TotalCost>
+                    <GrossAmount>7.49</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>7.49</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>1.57</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>LLAVERO</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>0.12</UnitPriceWithoutTax>
+                    <TotalCost>0.12</TotalCost>
+                    <GrossAmount>0.12</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>0.12</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>0.03</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>PACK PILAS AA</ItemDescription>
+                    <Quantity>2.0</Quantity>
+                    <UnitPriceWithoutTax>2.89</UnitPriceWithoutTax>
+                    <TotalCost>5.78</TotalCost>
+                    <GrossAmount>5.78</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>5.78</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>1.21</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>BROCA</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>3.02</UnitPriceWithoutTax>
+                    <TotalCost>3.02</TotalCost>
+                    <GrossAmount>3.02</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>3.02</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>0.63</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>PACK PILAS RECARGABLES AA</ItemDescription>
+                    <Quantity>2.0</Quantity>
+                    <UnitPriceWithoutTax>12.81</UnitPriceWithoutTax>
+                    <TotalCost>25.62</TotalCost>
+                    <GrossAmount>25.62</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>25.62</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>5.38</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>PARAGUERO</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>9.83</UnitPriceWithoutTax>
+                    <TotalCost>9.83</TotalCost>
+                    <GrossAmount>9.83</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>9.83</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>2.06</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>CINTA AISLANTE</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>0.83</UnitPriceWithoutTax>
+                    <TotalCost>0.83</TotalCost>
+                    <GrossAmount>0.83</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>0.83</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>0.17</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>TABLT LIBRE NEVIR 3G 8GB</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>81.82</UnitPriceWithoutTax>
+                    <TotalCost>81.82</TotalCost>
+                    <GrossAmount>81.82</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>81.82</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>17.18</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>BOMBILLA SETA HALOGENA</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>3.47</UnitPriceWithoutTax>
+                    <TotalCost>3.47</TotalCost>
+                    <GrossAmount>3.47</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>3.47</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>0.73</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>PACK PILAS AA</ItemDescription>
+                    <Quantity>2.0</Quantity>
+                    <UnitPriceWithoutTax>2.89</UnitPriceWithoutTax>
+                    <TotalCost>5.78</TotalCost>
+                    <GrossAmount>5.78</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>5.78</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>1.21</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>COPIA LLAVE</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitPriceWithoutTax>1.07</UnitPriceWithoutTax>
+                    <TotalCost>1.07</TotalCost>
+                    <GrossAmount>1.07</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>1.07</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>0.22</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+                <InvoiceLine>
+                    <ItemDescription>CABLE USB-MIN IUSB</ItemDescription>
+                    <Quantity>2.0</Quantity>
+                    <UnitPriceWithoutTax>7.52</UnitPriceWithoutTax>
+                    <TotalCost>15.04</TotalCost>
+                    <GrossAmount>15.04</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.0</TaxRate>
+                            <TaxableBase>
+<TotalAmount>15.04</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+<TotalAmount>3.16</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                </InvoiceLine>
+            </Items>
+        </Invoice>
+    </Invoices>
+<ds:Signature Id="Signature-40a8c33e-7e17-4704-843b-8cc89b226c3d-Signature" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><ds:Reference Id="Reference-65bf1e7f-9242-4475-a14c-cb6faf3f438a" Type="http://www.w3.org/2000/09/xmldsig#Object" URI=""><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><ds:DigestValue>sKCMMaCysFL16Wfg+DvNXXIFydsLWx1KC+1mI4w1ODyfeBF83mewS+cZehA5xQsxAxmGOV/TyDL1
+vR3aVp8DIg==</ds:DigestValue></ds:Reference><ds:Reference Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature-40a8c33e-7e17-4704-843b-8cc89b226c3d-SignedProperties"><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><ds:DigestValue>MG9zkq71bcYfzVHBj4vCaQsNilUnJL1pNdqqVhgp4XgF9kPY2dVxfR9tF6Xy2IPs0Yj0lNA3TL1y
+0aRZW44pzQ==</ds:DigestValue></ds:Reference><ds:Reference URI="#Signature-40a8c33e-7e17-4704-843b-8cc89b226c3d-KeyInfo"><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><ds:DigestValue>NKVTxXOV2uFeCOyRZUZ2bpa8EKe5bRA4YkFk3pBc7RxKtJ/+4ZQNCz4EeJtK4GDAU6hOreiR4mgx
+n2oEWWEpGg==</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue Id="Signature-40a8c33e-7e17-4704-843b-8cc89b226c3d-SignatureValue">GNE1VtelHMbH9l+sO6hyUIQbaIr9oR52hS6SHLSEnNwFmqjqkwFjIzRVQh2qBzrsaiBRQF/kX+Zu
+GVrMbx+Iul1esk0z3gfvZAeOuQ85eB8qzQjSMuc/Ne9HaUE8JkQdLfO5zqy4JB8ie4pafafm7/bm
+DhaW9LHxwEUnJDWO6lQjq2BW5k7zwncTSPE2deRHHwlcOkUf+by31kiEscO3xCDqfYPqlxKGwLAZ
+OvhQaQPpcJF60QWzZMS/MMcdxkkqHg3FNqHnEPgOsGILRq/jhiBU6THbq1rFhhcqbc+mVw+WQH8l
+fquEuEi7pOGb1pUzedvD009R4LHle3YXElqfmg==</ds:SignatureValue><ds:KeyInfo Id="Signature-40a8c33e-7e17-4704-843b-8cc89b226c3d-KeyInfo"><ds:X509Data><ds:X509Certificate>MIIHPTCCBiWgAwIBAgIQTI7EiQTDS9pYibapONSIVDANBgkqhkiG9w0BAQsFADBLMQswCQYDVQQG
+EwJFUzERMA8GA1UECgwIRk5NVC1SQ00xDjAMBgNVBAsMBUNlcmVzMRkwFwYDVQQDDBBBQyBGTk1U
+IFVzdWFyaW9zMB4XDTE3MDEyNjA4NDMyMFoXDTIxMDEyNjA4NDMyMFowgYkxCzAJBgNVBAYTAkVT
+MRgwFgYDVQQFEw9JRENFUy0zMzQyODY0MEExFDASBgNVBCoMC0pFU1VTIE1BUklBMRgwFgYDVQQE
+DA9NQVJDT1MgR09OWkFMRVoxMDAuBgNVBAMMJ01BUkNPUyBHT05aQUxFWiBKRVNVUyBNQVJJQSAt
+IDMzNDI4NjQwQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKzlpkInazlXnRQ9mE3s
+GlveVwa3iXo7RQNeARKHvaJtVdZvvc+ZxIHhOU29wU+r42p+9CCt11Y15GzAL0Y1EG1uv1l2qND7
+i2BYK9+0OMBVUWVimNJV8ZiRLl/XFjcFc1d3b4Z7YpIVm6Yi1WdNWpuArHtou3+CxlJ3MPhztiKB
+E0jGuzvZZvmeGkIlwvlw00XwOTflfClBBY/g4Nw93UGEzhy0cOG8XCJF5xIgsNcEGjmk1/flBxsJ
+ZJsLE8C5BqKwoUpPAi7MG5kjnQOMFQOa6Qyi1xyICwsOuAwbEalcxk3Ooh4RokBMQfCpQOJYdapz
+F/C+3WxEeEXwIpo1wU0CAwEAAaOCA9wwggPYMHMGA1UdEQRsMGqkaDBmMRgwFgYJKwYBBAGsZgEE
+DAkzMzQyODY0MEExFzAVBgkrBgEEAaxmAQMMCEdPTlpBTEVaMRUwEwYJKwYBBAGsZgECDAZNQVJD
+T1MxGjAYBgkrBgEEAaxmAQEMC0pFU1VTIE1BUklBMAwGA1UdEwEB/wQCMAAwDgYDVR0PAQH/BAQD
+AgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMEBggrBgEFBQcDAjAdBgNVHQ4EFgQUkvzk+qbZfREeQtTR
+oGfUjIma/mUwHwYDVR0jBBgwFoAUsdRPxCN5+kQFCcbrOc/oNbC4IGQwgYIGCCsGAQUFBwEBBHYw
+dDA9BggrBgEFBQcwAYYxaHR0cDovL29jc3B1c3UuY2VydC5mbm10LmVzL29jc3B1c3UvT2NzcFJl
+c3BvbmRlcjAzBggrBgEFBQcwAoYnaHR0cDovL3d3dy5jZXJ0LmZubXQuZXMvY2VydHMvQUNVU1Uu
+Y3J0MIHpBgNVHSAEgeEwgd4wgdAGCisGAQQBrGYDCgEwgcEwKQYIKwYBBQUHAgEWHWh0dHA6Ly93
+d3cuY2VydC5mbm10LmVzL2RwY3MvMIGTBggrBgEFBQcCAjCBhgyBg0NlcnRpZmljYWRvIGN1YWxp
+ZmljYWRvLiBTdWpldG8gYSBsYXMgY29uZGljaW9uZXMgZGUgdXNvIGV4cHVlc3RhcyBlbiBsYSBE
+UEMgZGUgbGEgRk5NVC1SQ00gKEMvSm9yZ2UgSnVhbiAxMDYtMjgwMDktTWFkcmlkLUVzcGHDsWEp
+MAkGBwQAi+xAAQAwgboGCCsGAQUFBwEDBIGtMIGqMAgGBgQAjkYBATALBgYEAI5GAQMCAQ8wEwYG
+BACORgEGMAkGBwQAjkYBBgEwfAYGBACORgEFMHIwNxYxaHR0cHM6Ly93d3cuY2VydC5mbm10LmVz
+L3Bkcy9QRFNBQ1VzdWFyaW9zX2VzLnBkZhMCZXMwNxYxaHR0cHM6Ly93d3cuY2VydC5mbm10LmVz
+L3Bkcy9QRFNBQ1VzdWFyaW9zX2VuLnBkZhMCZW4wgbUGA1UdHwSBrTCBqjCBp6CBpKCBoYaBnmxk
+YXA6Ly9sZGFwdXN1LmNlcnQuZm5tdC5lcy9jbj1DUkwxMDA1LGNuPUFDJTIwRk5NVCUyMFVzdWFy
+aW9zLG91PUNFUkVTLG89Rk5NVC1SQ00sYz1FUz9jZXJ0aWZpY2F0ZVJldm9jYXRpb25MaXN0O2Jp
+bmFyeT9iYXNlP29iamVjdGNsYXNzPWNSTERpc3RyaWJ1dGlvblBvaW50MA0GCSqGSIb3DQEBCwUA
+A4IBAQCWQJG27qrl2aYkEGlamhPiS25+kne0a8EYW7GEGwfKDI3NUIj/Sv0Euj7ZBlccp5mQo41k
+sSCGnjHmR/TDvjRKONR2CK+hHAGgMVQICU9q1gqPNhDscZh7HS8VLgX+mEo/HsgIm3XwDjnV3Ns1
+FpzjcjFB5HZoBePeHrnzkI207x1jpwSMmi5NqPLQcSrHHvfAm1F1rVsr4LKMGUSI0T1UwEzUqlA0
+1Z4iIIL5H9E5Jbb+R1+g/GF8FoqMErhzyjV3eH7JLi1uQ+7tKySRtB7biq0Ofzni+v/S8ccp81Lf
+SjHNmHfPiCJESayfWaNB0X1en97pbGqnKmoa5TqvSyvN</ds:X509Certificate><ds:X509Certificate>MIIG2jCCBMKgAwIBAgIQRV864VwhzbpUT4KqR1Hr2zANBgkqhkiG9w0BAQsFADA7MQswCQYDVQQG
+EwJFUzERMA8GA1UECgwIRk5NVC1SQ00xGTAXBgNVBAsMEEFDIFJBSVogRk5NVC1SQ00wHhcNMTQx
+MDI4MTE0ODU4WhcNMjkxMDI4MTE0ODU4WjBLMQswCQYDVQQGEwJFUzERMA8GA1UECgwIRk5NVC1S
+Q00xDjAMBgNVBAsMBUNlcmVzMRkwFwYDVQQDDBBBQyBGTk1UIFVzdWFyaW9zMIIBIjANBgkqhkiG
+9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnSAEJi37LWkwy9mTf6XlrtRwcu+UvkVr5Y+yC/m6M4Ylr4bx
+wNjbtj++8b6JBab9wyHhktVSIBa+diYhfsHsWVWgkOlSzNIPqTPKOmjYtL3UJuoW3AbpDNZJEVFg
+EolkCg51wXKMjO7O5CfJwIA3iV2fbeeR4YAOms/1mqm0LSkrWiwwlYF9Vn8aqr/eAnT/d8KdYC5Z
+/9Mc1azWHWN7zJ6MTduZ9PcVjMm70iviHaohgEUu979by23acx69q7qLPjHkYoGhf2ft1tQqYmjs
+9icgwPhrzLyy1zzXYy0HoeFns4bi2N+MBTmpf/i8HZOK6By3MS2UlCsjXhHhzamwRwIDAQABo4IC
+yDCCAsQwEgYDVR0TAQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAQYwHQYDVR0OBBYEFLHUT8Qj
+efpEBQnG6znP6DWwuCBkMIGYBggrBgEFBQcBAQSBizCBiDBJBggrBgEFBQcwAYY9aHR0cDovL29j
+c3Bmbm10cmNtY2EuY2VydC5mbm10LmVzL29jc3Bmbm10cmNtY2EvT2NzcFJlc3BvbmRlcjA7Bggr
+BgEFBQcwAoYvaHR0cDovL3d3dy5jZXJ0LmZubXQuZXMvY2VydHMvQUNSQUlaRk5NVFJDTS5jcnQw
+HwYDVR0jBBgwFoAU933F/cTomht3ZKf1HaDMv4dgmm0wgesGA1UdIASB4zCB4DCB3QYEVR0gADCB
+1DApBggrBgEFBQcCARYdaHR0cDovL3d3dy5jZXJ0LmZubXQuZXMvZHBjcy8wgaYGCCsGAQUFBwIC
+MIGZDIGWU3VqZXRvIGEgbGFzIGNvbmRpY2lvbmVzIGRlIHVzbyBleHB1ZXN0YXMgZW4gbGEgRGVj
+bGFyYWNpw7NuIGRlIFByw6FjdGljYXMgZGUgQ2VydGlmaWNhY2nDs24gZGUgbGEgRk5NVC1SQ00g
+KCBDLyBKb3JnZSBKdWFuLCAxMDYtMjgwMDktTWFkcmlkLUVzcGHDsWEpMIHUBgNVHR8Egcwwgckw
+gcaggcOggcCGgZBsZGFwOi8vbGRhcGZubXQuY2VydC5mbm10LmVzL0NOPUNSTCxPVT1BQyUyMFJB
+SVolMjBGTk1ULVJDTSxPPUZOTVQtUkNNLEM9RVM/YXV0aG9yaXR5UmV2b2NhdGlvbkxpc3Q7Ymlu
+YXJ5P2Jhc2U/b2JqZWN0Y2xhc3M9Y1JMRGlzdHJpYnV0aW9uUG9pbnSGK2h0dHA6Ly93d3cuY2Vy
+dC5mbm10LmVzL2NybHMvQVJMRk5NVFJDTS5jcmwwDQYJKoZIhvcNAQELBQADggIBAIw9KLTgfg3z
+blzaXHc9gGQeTukSuMnmsv8rgKB4PYRMLGWLL9zxYyvn3VJB26/8FwuMmoTyCdRdVqKe+YJmwIVe
+nF7qg+d8Ro5+X+Zj7ati70ZOJ2GVgb1NAj2pNA+Z+eZrVpUDn31L+3ziThLvpAtEtTx6ATFbJmEg
+kpR1AnbWzvuswwUIMUBspR02niCIzqCJVm2u2Uy9kHw+diBJRuwVYppBZavgn7ECNO+vKeIAKZme
++WMd0ZQThkDRYIxFFwYhWFoc1TE+Lf0nVbEa5j/v6oVcauP+2dyLjH/rTdVhh4LnI/DKPGKHduQ8
+qXuhbxgbIiu8jBT/0n3dWQPFB3ou9+sHllT9uSUVGrtK+KyjgGLH5oe8i4GObH7GJUthkUwEYzGi
+jg/WmKvm+jg0gnlWT7HiU0K4fEWldIBl9nNah12ySPVN63q/8kCXS3JR8cM82ZeszLVntPs64itV
+2WKrkrNA+Ltu4Z/UTY4luH+IRevo9reT6790MQvYrCwjSsuND4fXI86/mGESGvhbwECmphe8L/jV
+0uZ01yI5mmghedBr5WqKv64EmIXNFVZ23+mh8RFCgqPZsatVaVoBQq1FevOhPMjEvxiMgzPXve2A
+3gSmng/UKDcKGzFbyL+veSZhdP854mPk3IPECYZENqAYWXjBltm8UDRmUBt1wpgR</ds:X509Certificate><ds:X509Certificate>MIIFhDCCA2ygAwIBAgIQAIG73WskH9q0vo8b2ghVxDANBgkqhkiG9w0BAQUFADA7MQswCQYDVQQG
+EwJFUzERMA8GA1UECgwIRk5NVC1SQ00xGTAXBgNVBAsMEEFDIFJBSVogRk5NVC1SQ00wHhcNMDgx
+MDI5MTU1OTU1WhcNMzAwMTAxMDAwMDAwWjA7MQswCQYDVQQGEwJFUzERMA8GA1UECgwIRk5NVC1S
+Q00xGTAXBgNVBAsMEEFDIFJBSVogRk5NVC1SQ00wggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIK
+AoICAQC6cYB6TIZuf8gTbcDGfRwAl48sDCO7EJpAqRq3h4j4m1Zq++Z7jouSjqclXVkR2zYut1EX
+H6kIHwQXJFiqN0oY3+U51Ff918EskQGR4iLUA8BY/HdH7I8+dEO6rDSNTTh2Z46wyG8wM1hxXLT1
+a27UAVC4E35sSqNJ0SAZ7rzAKRhlp97+790KkCHnGmeSQhCYX08wvD4cRbQQ12hAFMBA+ud3F3rm
+C49lWzzZmlLbtb2eRs8965EFAsCWsnZMTRCWO5L6nH8Pmd++IzVFHgJc/rWom5kl2l7zIsM59eQq
+LtPGH8RsqsUcagEFSi/SxcGoNCZdZqXSAiH5GLcG9U6Zb6irTFHoz1AYxXfIOQksSZIymai7Fxd5
+sFrF5qPEWWVHNYNeqeg1C5m75M0gxptKBjm1aPwiuu5VjCtO6vOx4/y2mZrVQvpxTQjPhx5qcX35
+07TppXGBe8JOR5al9naFoyiP6YBugVOlbV+4SPnC+TamLkn/uJbCjAezm4hY/OsbHN4tcOKXkjCh
+ieO8Vagn1kvtkK2L+mMlWS2oNd3KlzO85c3HndHs714OSpAGJmOtudk1LQe6dmUsrFePffQHlNeB
+ApZdowdJ1XrQV/kb51NGdaqweULLaHEI6WC9OWnO9K/DVkDHrVKiCeRvhkeKH+soJ12DIK8EyWxW
+motG9QIDAQABo4GDMIGAMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQW
+BBT3fcX9xOiaG3dkp/UdoMy/h2CabTA+BgNVHSAENzA1MDMGBFUdIAAwKzApBggrBgEFBQcCARYd
+aHR0cDovL3d3dy5jZXJ0LmZubXQuZXMvZHBjcy8wDQYJKoZIhvcNAQEFBQADggIBAHa5Jte8YHw7
+w8eEUZJZebaNv1PgvIigtdlM6a31Zk7voGDIC7iR7TOOgvGGlf7G0xqJq0872TMf0AvHsfVPpEu7
+AwwjXGyw3qxy+mneABDN8dbPNlK+f/wmQfPy/DDiMcbbED6pdLpP7O0gmcmw4qKjqUKZM8t/96oC
+6SSWKvjkzl1BoAYJVVra3xpP6zn8X+CpqUTXGOqVsUR72uo4CXQeZyg/4Is5LFP6DOA59ysaDjEB
+1GZ5iHSdSEiOtJNh5r8pCe++BqkabAhwBAq/bgl2pGRDzh9XnZeebPh0FxxRA/pgU9RWRpbQUJ/G
+nTPzQ7Go16LJsMmDsX3H3KyBdteJ7UMm1v+iXKItoCRHqkaaaTEJwf0QebCF7HAg5j1BVKJKYi/W
+3kzDnI+9y6ZVlBzdvUHPKGWN0E3Xh9FM00NzIezXLhdnMoe20Bt0qmnH5GyH130Zmuw9RPGqglly
+zUXb2mZC4ThsNl9U3SZWV6LZPqQK8u/8GYAf27qqgLzYUc1UatV/2G+13Bb7QOJVVJDD3Ycz0f8e
+pWKLNkSsqL/A1sSUd7O9xHUkaen/OZSr/FFnJOpAHuuJLRMGfa4HocMM9dRask63IR0XxeW58h/j
+hgFdCwZ5XcnKPxZ+gR5NfvCaPCXFznR5nkrh8en1JUb2xN7kRGRzHcY5PnrmhXsY</ds:X509Certificate></ds:X509Data><ds:KeyValue><ds:RSAKeyValue><ds:Modulus>rOWmQidrOVedFD2YTewaW95XBreJejtFA14BEoe9om1V1m+9z5nEgeE5Tb3BT6vjan70IK3XVjXk
+bMAvRjUQbW6/WXao0PuLYFgr37Q4wFVRZWKY0lXxmJEuX9cWNwVzV3dvhntikhWbpiLVZ01am4Cs
+e2i7f4LGUncw+HO2IoETSMa7O9lm+Z4aQiXC+XDTRfA5N+V8KUEFj+Dg3D3dQYTOHLRw4bxcIkXn
+EiCw1wQaOaTX9+UHGwlkmwsTwLkGorChSk8CLswbmSOdA4wVA5rpDKLXHIgLCw64DBsRqVzGTc6i
+HhGiQExB8KlA4lh1qnMX8L7dbER4RfAimjXBTQ==</ds:Modulus><ds:Exponent>AQAB</ds:Exponent></ds:RSAKeyValue></ds:KeyValue></ds:KeyInfo><ds:Object><xades:QualifyingProperties Id="Signature-40a8c33e-7e17-4704-843b-8cc89b226c3d-QualifyingProperties" Target="#Signature-40a8c33e-7e17-4704-843b-8cc89b226c3d-Signature" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xades="http://uri.etsi.org/01903/v1.3.2#"><xades:SignedProperties Id="Signature-40a8c33e-7e17-4704-843b-8cc89b226c3d-SignedProperties"><xades:SignedSignatureProperties><xades:SigningTime>2017-02-02T11:46:38+01:00</xades:SigningTime><xades:SigningCertificate><xades:Cert><xades:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><ds:DigestValue>yx8SrcwcOIlpelPyily4HRhs9s719lAzFkSv1kBwhJ0Yu9xIazA3sSMcfcfS/ovSc5P1goUMq3/nV/p3deaVqQ==</ds:DigestValue></xades:CertDigest><xades:IssuerSerial><ds:X509IssuerName>CN=AC FNMT Usuarios, OU=Ceres, O=FNMT-RCM, C=ES</ds:X509IssuerName><ds:X509SerialNumber>101762620041580170824924498477935003732</ds:X509SerialNumber></xades:IssuerSerial></xades:Cert></xades:SigningCertificate><xades:SignaturePolicyIdentifier><xades:SignaturePolicyId><xades:SigPolicyId><xades:Identifier>http://www.facturae.es/politica_de_firma_formato_facturae/politica_de_firma_formato_facturae_v3_1.pdf</xades:Identifier><xades:Description></xades:Description></xades:SigPolicyId><xades:SigPolicyHash><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>Ohixl6upD6av8N7pEvDABhEL6hM=</ds:DigestValue></xades:SigPolicyHash></xades:SignaturePolicyId></xades:SignaturePolicyIdentifier><xades:SignerRole><xades:ClaimedRoles><xades:ClaimedRole>emisor</xades:ClaimedRole></xades:ClaimedRoles></xades:SignerRole></xades:SignedSignatureProperties><xades:SignedDataObjectProperties><xades:DataObjectFormat ObjectReference="#Reference-65bf1e7f-9242-4475-a14c-cb6faf3f438a"><xades:Description/><xades:MimeType>application/octet-stream</xades:MimeType><xades:Encoding/></xades:DataObjectFormat></xades:SignedDataObjectProperties></xades:SignedProperties></xades:QualifyingProperties></ds:Object></ds:Signature></ns3:Facturae>
