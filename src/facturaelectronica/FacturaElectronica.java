@@ -63,6 +63,9 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 
+import eu.europa.esig.dss.cades.CAdESSignatureParameters;
+import net.java.xades.security.xml.XAdES.XAdES;
+
 /**
  *
  * @author Txus
@@ -352,8 +355,7 @@ public class FacturaElectronica {
         } catch (InvalidAlgorithmParameterException ex) {
             Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        fac.
+        
             
         SignedInfo si = null;
         try {
@@ -467,6 +469,36 @@ public class FacturaElectronica {
         } catch (TransformerException ex) {
             Logger.getLogger(FacturaElectronica.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        XAdES xades = new XAdES();
+                //////////////////////////////////////////////////////////////////////
+        // Preparing parameters for the XAdES signature
+        SignatureParameters parameters = new SignatureParameters();
+// We choose the level of the signature (-B, -T, -LT, -LTA).
+        parameters.setSignatureLevel(SignatureLevel.XAdES_BASELINE_B);
+// We choose the type of the signature packaging (ENVELOPED, ENVELOPING, DETACHED).
+        parameters.setSignaturePackaging(SignaturePackaging.ENVELOPING);
+// We set the digest algorithm to use with the signature algorithm. You must use the
+// same parameter when you invoke the method sign on the token. The default value is SHA256
+        parameters.setDigestAlgorithm(DigestAlgorithm.SHA256);
+// We choose the private key with the certificate and corresponding certificate chain.
+        parameters.setPrivateKeyEntry(privateKey);
+// Create common certificate verifier
+        CommonCertificateVerifier commonCertificateVerifier = new CommonCertificateVerifier();
+// Create XAdES service for signature
+        XAdESService service = new XAdESService(commonCertificateVerifier);
+
+// Get the SignedInfo XML segment that need to be signed.
+        byte[] dataToSign = service.getDataToSign(toSignDocument, parameters);
+
+// This function obtains the signature value for signed information using the
+// private key and specified algorithm
+        byte[] signatureValue = token.sign(dataToSign, parameters.getDigestAlgorithm(), privateKey);
+
+// We invoke the service to sign the document with the signature value obtained in the previous step.
+        DSSDocument signedDocument = service.signDocument(toSignDocument, parameters, signatureValue);
+        DSSUtils.copy(signedDocument.openStream(), System.out);
         
     }
 
